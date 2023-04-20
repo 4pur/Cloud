@@ -1,9 +1,2 @@
 # secrets :o
 .env
-
-# replit
-replit.nix
-.replit
-pyproject.toml
-poetry.lock
-venv/
