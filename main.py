@@ -9,5 +9,5 @@ class Cloud(discord.Client):
     async def on_message(self, message):
         print(f'Message from {message.author}: {message.content}')
 
-client = Cloud()
+client = Cloud(intents=discord.Intents.default())
 client.run(TOKEN)
