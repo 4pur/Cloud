@@ -10,5 +10,5 @@ Cloud = commands.Bot(command_prefix='.', intents=discord.Intents(message_content
 async def ban(ctx, m: discord.Member, reason = None):
     await m.ban
 
-Cloud.add_command(i)
+Cloud.add_command(ban)
 Cloud.run(TOKEN)
