@@ -14,10 +14,12 @@ async def ban(ctx, m: discord.Member, r = str):
 
 @commands.command()
 @commands.has_permissions(kick_members = True)
-async def kick(ctx, m: discord.Member, reason = None):
-    await m.kick
+async def kick(ctx, m: discord.Member, r = None):
+    for ms in m:
+        await m.kick(reason = r)
+        await ctx.send(f"Kicked {m} for {r}")
 
 
-@commands.add_command(ban)
-@commands.add_command(kick)
+Cloud.add_command(ban)
+Cloud.add_command(kick)
 Cloud.run(TOKEN)
