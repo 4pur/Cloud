@@ -4,8 +4,9 @@
 A discord bot, with lots of customizable features!
 
 ## Requirements
-- [pycord](https://github.com/Pycord-Development/pycord)
+- [pycord](https://pycord.dev)
 - [python](https://python.org)
+- [python-dotenv](https://pypi.org/project/python-dotenv/)
 
 ## Features
 - Customizable commands
