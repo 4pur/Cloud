@@ -17,7 +17,7 @@ A discord bot, with lots of customizable features!
 
 ## TODO
 
-- [x] Make the bot work
+* [x] Make the bot work
 - [ ] Add commands
 - [ ] Add responses
 - [ ] Add music player
