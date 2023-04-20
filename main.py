@@ -1,14 +1,13 @@
+from discord.ext import commands
 import discord
 from dotenv import load_dotenv; load_dotenv() # Read .env file contents
 from os import getenv; TOKEN = getenv("TOKEN")
 
-class Cloud(discord.Client):
-    async def on_ready(self):
-        print(f'online as cloud')
+Cloud = commands.Bot(command_prefix='.', intents=discord.Intents(message_content = True, members = True, messages = True))
 
-    async def on_message(self, message):
-        if message.content == "a":
-            print("a")
+@commands.command()
+async def i(ctx):
+    print("a")
 
-client = Cloud(intents=discord.Intents.default())
-client.run(TOKEN)
+Cloud.add_command(i)
+Cloud.run(TOKEN)
