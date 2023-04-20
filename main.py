@@ -32,6 +32,8 @@ async def unban(ctx, m: discord.Member):
     for ms in m:
         await m.unban
 
-Cloud.add_command(ban)
+Cloud.add_command(timeout)
 Cloud.add_command(kick)
+Cloud.add_command(ban)
+Cloud.add_command(unban)
 Cloud.run(TOKEN)
