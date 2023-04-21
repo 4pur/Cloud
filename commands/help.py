@@ -7,3 +7,4 @@ class HelpCog(commands.Cog):
         
     @commands.command()
     async def help(ctx, m: discord.Member, r = str):
+        print("")
