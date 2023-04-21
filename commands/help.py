@@ -13,4 +13,4 @@ class HelpCog(commands.Cog):
         
     @commands.command()
     async def help(ctx, m: discord.Member):
-        await ctx.send(e)
+        await ctx.send(embed=e)
