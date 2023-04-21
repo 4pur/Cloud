@@ -5,6 +5,9 @@ from dotenv import load_dotenv; load_dotenv() # Read .env file contents
 from os import getenv; TOKEN = getenv("TOKEN")
 
 from commands.moderation.ban import BanCog
+from commands.moderation.unban import UnbanCog
+from commands.moderation.kick import KickCog
+from commands.moderation.timeout import TimeoutCog
 
 Cloud = commands.Bot(command_prefix='.', intents=discord.Intents(message_content = True, members = True, messages = True))
 print("online!")
@@ -18,12 +21,7 @@ async def kick(ctx, m: discord.Member, r = str):
         await m.kick(reason = r)
         await ctx.send(f"Kicked {m} for {r}")
 
-@commands.command()
-@commands.has_permissions(moderate_members = True)
-async def timeout(ctx, m: discord.Member, r = str):
-    for ms in m:
-        await m.timeout(reason = r)
-        await ctx.send(f"Timed out {m} for {r}.")
+
 
 @commands.command()
 @commands.has_permissions(ban_members = True)
@@ -41,4 +39,7 @@ async def who(ctx):
         
         
 Cloud.add_cog(BanCog(Cloud))
+Cloud.add_cog(UnbanCog(Cloud))
+Cloud.add_cog(KickCog(Cloud))
+Cloud.add_cog(TimeoutCog(Cloud))
 Cloud.run(TOKEN)
