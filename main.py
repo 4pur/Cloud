@@ -4,9 +4,7 @@ from dotenv import load_dotenv; load_dotenv() # Read .env file contents
 from os import getenv; TOKEN = getenv("TOKEN")
 
 Cloud = commands.Bot(command_prefix='.', intents=discord.Intents(message_content = True, members = True, messages = True))
-
-async def on_ready():
-    print("online!")
+print("online!")
 
 @commands.command()
 @commands.has_permissions(ban_members = True)
