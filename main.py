@@ -1,6 +1,5 @@
 from discord.ext import commands
 import discord
-import datetime as dt
 from dotenv import load_dotenv; load_dotenv() # Read .env file contents
 from os import getenv; TOKEN = getenv("TOKEN")
 
@@ -23,10 +22,10 @@ async def kick(ctx, m: discord.Member, r = str):
 
 @commands.command()
 @commands.has_permissions(moderate_members = True)
-async def timeout(ctx, m: discord.Member, r = str, u = dt.utcnow()):
+async def timeout(ctx, m: discord.Member, r = str):
     for ms in m:
         await m.timeout(reason = r, until = u)
-        await ctx.send(f"Timed out {m} until {u}, for {r}.")
+        await ctx.send(f"Timed out {m} for {r}.")
 
 @commands.command()
 @commands.has_permissions(ban_members = True)
