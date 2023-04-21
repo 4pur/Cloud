@@ -19,8 +19,6 @@ Cloud.add_cog(BanCog(Cloud))
 Cloud.add_cog(UnbanCog(Cloud))
 Cloud.add_cog(KickCog(Cloud))
 Cloud.add_cog(TimeoutCog(Cloud))
-
-# AI
 Cloud.add_cog(AskCog(Cloud))
 
 load_dotenv()
