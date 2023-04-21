@@ -7,6 +7,3 @@ class HelpCog(commands.Cog):
         
     @commands.command()
     async def help(ctx, m: discord.Member, r = str):
-        for ms in m:
-            await m.timeout(reason = r)
-            await ctx.send(f"Timed out {m} for {r}.")
