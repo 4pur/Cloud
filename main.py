@@ -11,10 +11,8 @@ for str in ["commands.moderation.ban", "commands.moderation.unban", "commands.mo
 Cloud = commands.Bot(command_prefix='$', intents=discord.Intents(message_content = True, members = True, messages = True))
 print("online!")
 
-# make a loop to do this for every cog imported
 for cog in [BanCog, UnbanCog, KickCog, TimeoutCog, AskCog]:
     Cloud.add_cog(cog(Cloud))
 
-load_dotenv()
-TOKEN = getenv("TOKEN")
+load_dotenv(); TOKEN = getenv("TOKEN")
 Cloud.run(TOKEN)
