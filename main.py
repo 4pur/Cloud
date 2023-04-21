@@ -35,11 +35,12 @@ async def unban(ctx, m: discord.Member):
         ctx.send(f"Unbanned {u}.")
         
 @commands.command()
-async def who(ctx, m: discord.Member):
+async def who(ctx:
     if ctx.author.id == 293545401972424725:
-        ctx.send(f"You are {m}")
+        ctx.send(f"You are {ctx.author}")
     else:
         ctx.send(f"I do not know you.")
+        
 Cloud.add_command(timeout)
 Cloud.add_command(kick)
 Cloud.add_command(ban)
