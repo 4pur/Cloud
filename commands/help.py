@@ -15,3 +15,4 @@ class HelpCog(commands.Cog):
     @commands.command(pass_context = True)
     async def help(ctx, c):
         await ctx.send(embed=e)
+        print(c)
