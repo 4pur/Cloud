@@ -14,7 +14,7 @@ from commands.ai.ask             import AskCog
 Cloud = commands.Bot(command_prefix='$', intents=discord.Intents(message_content = True, members = True, messages = True))
 print("online!")
 
-# make a 
+# make a loop to do this
 Cloud.add_cog(BanCog(Cloud))
 Cloud.add_cog(UnbanCog(Cloud))
 Cloud.add_cog(KickCog(Cloud))
