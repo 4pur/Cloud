@@ -5,12 +5,14 @@ from discord.ext import commands
 e = Embed(
     color=(0xeca4fb),
     title="Help")
-e.add_field(name="test", value="test2")
+e.add_field(name="test", 
+            value="test2",
+            inline=False)
 
 class HelpCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         
-    @commands.command()
-    async def help(ctx, m: discord.Member):
+    @commands.command(pass_context = True)
+    async def help(self, ctx):
         await ctx.send(embed=e)

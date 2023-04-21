@@ -8,9 +8,10 @@ from commands.moderation.ban     import BanCog
 from commands.moderation.unban   import UnbanCog
 from commands.moderation.kick    import KickCog
 from commands.moderation.timeout import TimeoutCog
+
 from commands.help               import HelpCog
 
-Cloud = commands.Bot(command_prefix='.', intents=discord.Intents(message_content = True, members = True, messages = True))
+Cloud = commands.Bot(command_prefix='$', intents=discord.Intents(message_content = True, members = True, messages = True))
 print("online!")
 
 Cloud.add_cog(BanCog(Cloud))
