@@ -12,6 +12,6 @@ class HelpCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         
-    @commands.command()
+    @commands.command(pass_context = True)
     async def help(ctx):
         await ctx.send(embed=e)
