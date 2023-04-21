@@ -1,8 +1,11 @@
-from discord.ext import commands
 import discord
 import datetime as dt
+import sys
+sys.path.append(f'C:\\Users\\{NAME}\\Cloud\\commands\\moderation')
+
+from discord.ext import commands
 from dotenv import load_dotenv; load_dotenv() # Read .env file contents
-from os import getenv; TOKEN = getenv("TOKEN")
+from os import getenv; TOKEN = getenv("TOKEN"); USERNAME = getenv("NAME")
 
 Cloud = commands.Bot(command_prefix='.', intents=discord.Intents(message_content = True, members = True, messages = True))
 
