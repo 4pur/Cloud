@@ -4,7 +4,7 @@ from discord.ext import commands
 from dotenv import load_dotenv; load_dotenv() # Read .env file contents
 from os import getenv; TOKEN = getenv("TOKEN")
 
-from commands.moderation.ban import ban
+from commands.moderation.ban import BanCog
 
 Cloud = commands.Bot(command_prefix='.', intents=discord.Intents(message_content = True, members = True, messages = True))
 print("online!")
@@ -40,5 +40,5 @@ async def who(ctx):
         await ctx.send(f"I do not know you.")
         
         
-Cloud.add_cog(ban(Cloud))
+Cloud.add_cog(BanCog(Cloud))
 Cloud.run(TOKEN)
