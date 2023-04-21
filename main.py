@@ -18,7 +18,7 @@ Cloud.add_cog(BanCog(Cloud))
 Cloud.add_cog(UnbanCog(Cloud))
 Cloud.add_cog(KickCog(Cloud))
 Cloud.add_cog(TimeoutCog(Cloud))
-Cloud.add_cog(HelpCog(Cloud))
+Cloud.add_cog(xCog(Cloud))
 
 load_dotenv()
 TOKEN = getenv("TOKEN")
