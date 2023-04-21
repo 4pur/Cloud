@@ -8,7 +8,7 @@ e.add_field(name="test",
             value="test2",
             inline=False)
 
-class HelpCog(commands.Cog):
+class xCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         
