@@ -1,4 +1,5 @@
 import discord
+from discord import Embed
 from discord.ext import commands
 
 class HelpCog(commands.Cog):
@@ -7,4 +8,4 @@ class HelpCog(commands.Cog):
         
     @commands.command()
     async def help(ctx, m: discord.Member):
-        print("")
+        ctx.send(Embed(title="test"))
