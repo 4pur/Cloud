@@ -6,7 +6,7 @@ class UnbanCog(commands.Cog):
         self.bot = bot
         
     @commands.command()
-    @commands.has_permissions(ban_members = True)
+    # @commands.has_permissions(ban_members = True) Causing unnessecary errors, fix later.
     async def unban(ctx, m: discord.Member, r = str):
         for ms in m:
             await m.unban()
