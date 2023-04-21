@@ -8,4 +8,4 @@ class HelpCog(commands.Cog):
         
     @commands.command()
     async def help(ctx, m: discord.Member):
-        ctx.send(Embed(title="test"))
+        await ctx.send(Embed(title="test"))
