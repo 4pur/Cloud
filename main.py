@@ -1,17 +1,15 @@
-from discord.ext import commands
 import discord
+
+from discord.ext import commands
 from dotenv import load_dotenv; load_dotenv() # Read .env file contents
 from os import getenv; TOKEN = getenv("TOKEN")
+
+from commands.moderation.ban import ban
 
 Cloud = commands.Bot(command_prefix='.', intents=discord.Intents(message_content = True, members = True, messages = True))
 print("online!")
 
-@commands.command()
-@commands.has_permissions(ban_members = True)
-async def ban(ctx, m: discord.Member, r = str):
-    for ms in m:
-        await m.ban(reason = r)
-        await ctx.send(f"Banned {m} for {r}")
+
 
 @commands.command()
 @commands.has_permissions(kick_members = True)
@@ -24,7 +22,7 @@ async def kick(ctx, m: discord.Member, r = str):
 @commands.has_permissions(moderate_members = True)
 async def timeout(ctx, m: discord.Member, r = str):
     for ms in m:
-        await m.timeout(reason = r, until = u)
+        await m.timeout(reason = r)
         await ctx.send(f"Timed out {m} for {r}.")
 
 @commands.command()
@@ -41,9 +39,6 @@ async def who(ctx):
     else:
         await ctx.send(f"I do not know you.")
         
-Cloud.add_command(timeout)
-Cloud.add_command(kick)
-Cloud.add_command(ban)
-Cloud.add_command(unban)
-Cloud.add_command(who)
+        
+Cloud.add_cog(ban(Cloud))
 Cloud.run(TOKEN)
