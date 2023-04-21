@@ -15,4 +15,3 @@ class EmbedCog(commands.Cog):
     @commands.command(pass_context = True)
     async def embed(self, ctx):
         await ctx.send(embed=e)
-        print(c)
