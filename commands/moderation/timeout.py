@@ -6,7 +6,7 @@ class TimeoutCog(commands.Cog):
         self.bot = bot
         
     @commands.command()
-    @commands.has_permissions(moderate_members = True)
+    # @commands.has_permissions(moderate_members = True) Causing unnessecary errors, fix later.
     async def timeout(ctx, m: discord.Member, r = str):
         for ms in m:
             await m.timeout(reason = r)
