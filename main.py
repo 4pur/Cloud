@@ -35,7 +35,7 @@ async def unban(ctx, m: discord.Member):
         ctx.send(f"Unbanned {u}.")
         
 @commands.command()
-async def who(ctx:
+async def who(ctx):
     if ctx.author.id == 293545401972424725:
         ctx.send(f"You are {ctx.author}")
     else:
