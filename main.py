@@ -15,6 +15,7 @@ Cloud = commands.Bot(command_prefix='$', intents=discord.Intents(message_content
 print("online!")
 
 # make a loop to do this for every cog
+
 Cloud.add_cog(BanCog(Cloud))
 Cloud.add_cog(UnbanCog(Cloud))
 Cloud.add_cog(KickCog(Cloud))
