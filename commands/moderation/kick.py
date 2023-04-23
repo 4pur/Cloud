@@ -6,8 +6,7 @@ class KickCog(commands.Cog):
         self.bot = bot
         
     @commands.command()
-    # @commands.has_permissions(ban_members = True) Causing unnessecary errors, fix later.
-    async def kick(ctx, m: discord.Member, r = str):
-        for ms in m:
-            await m.kick(reason = r)
-            await ctx.send(f"Kicked {m} for {r}")
+    # @commands.has_guild_permissions(moderate_members = True)
+    async def kick(self, ctx, m: discord.Member, r = str):
+        await m.kick(reason = r)
+        await ctx.send(f"Kicked {m} for {r}")

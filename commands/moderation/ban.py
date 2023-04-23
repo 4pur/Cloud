@@ -6,8 +6,7 @@ class BanCog(commands.Cog):
         self.bot = bot
         
     @commands.command()
-    # @commands.has_permissions(ban_members = True) Causing unnessecary errors, fix later.
-    async def ban(ctx, m: discord.Member, r = str):
-        for ms in m:
-            await m.ban(reason = r)
-            await ctx.send(f"Banned {m} for {r}")
+    # @commands.has_guild_permissions(moderate_members = True)
+    async def ban(self, ctx, m: discord.Member, r = str):
+        await m.ban(reason = r)
+        await ctx.send(f"Banned {m} for {r}")
