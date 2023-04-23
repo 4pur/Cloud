@@ -7,6 +7,7 @@ commands/__pycache__
 commands/moderation/__pycache__
 commands/music/__pycache__
 commands/ai/__pycache__
+commands/misc/__pycache__
 
 # vscode
 .vscode/
