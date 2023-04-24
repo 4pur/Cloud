@@ -8,7 +8,7 @@ for str in ["commands.moderation.ban", "commands.moderation.unban", "commands.mo
     exec(f"from {str} import {str.split('.')[-1].capitalize()}Cog")
     print(f"imported {str}")
 
-Cloud = commands.Bot(command_prefix='$', intents=discord.Intents(message_content = True, members = True, messages = True))
+Cloud = commands.Bot(command_prefix='$', intents=discord.Intents(message_content = True, members = True))
 print("online!")
 
 for cog in [BanCog, UnbanCog, KickCog, TimeoutCog, SpamCog]:
