@@ -11,3 +11,6 @@ commands/misc/__pycache__
 
 # vscode
 .vscode/
+
+# bot logs
+discord.log
