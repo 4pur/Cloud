@@ -7,7 +7,7 @@ from os          import getenv
 
 i = 0
 
-for str in ["commands.moderation.ban", "commands.moderation.unban", "commands.moderation.kick", "commands.moderation.timeout", "commands.misc.spam"]:
+for str in ["commands.moderation.ban", "commands.moderation.unban", "commands.moderation.kick", "commands.moderation.timeout", "commands.misc.spam", "commands.misc.avatar"]:
     i += 1
     exec(f"from {str} import {str.split('.')[-1].capitalize()}Cog")
     
@@ -18,9 +18,8 @@ intent.members = True
 intent.message_content = True
 
 Cloud = commands.Bot(command_prefix='$', intents=intent)
-print("online!")
 
-for cog in [BanCog, UnbanCog, KickCog, TimeoutCog, SpamCog]:
+for cog in [BanCog, UnbanCog, KickCog, TimeoutCog, SpamCog, AvatarCog]:
     Cloud.add_cog(cog(Cloud))
 
 logger = logging.getLogger('discord')
