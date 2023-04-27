@@ -5,9 +5,13 @@ from discord.ext import commands
 from dotenv      import load_dotenv
 from os          import getenv
 
+i = 0
+
 for str in ["commands.moderation.ban", "commands.moderation.unban", "commands.moderation.kick", "commands.moderation.timeout", "commands.misc.spam"]:
+    i += 1
     exec(f"from {str} import {str.split('.')[-1].capitalize()}Cog")
-    print(f"imported {str}")
+    
+print(f"loaded {i} cogs")    
 
 intent = discord.Intents.default()
 intent.members = True
