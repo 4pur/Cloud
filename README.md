@@ -21,5 +21,5 @@ A discord bot, with lots of customizable features!
 - [x] Add moderation tools
 - [ ] Add responses
 - [ ] Add music player
-- [ ] Add AI Support
+- [ ] Add AI Support (WIP)
 - [ ] Improve Error UX, and User UX

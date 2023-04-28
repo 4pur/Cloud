@@ -1,3 +1,9 @@
+## TODO ## 
+# - Add a command to change the prefix
+# - Add a whois command
+# - Add a help command (maybe)
+
+
 import discord
 import logging
 
@@ -7,7 +13,7 @@ from os          import getenv
 
 i = 0
 
-for str in ["commands.moderation.ban", "commands.moderation.unban", "commands.moderation.kick", "commands.moderation.timeout", "commands.misc.spam", "commands.util.avatar", "commands.util.clear"]:
+for str in ["commands.moderation.ban", "commands.moderation.unban", "commands.moderation.kick", "commands.moderation.timeout", "commands.misc.spam", "commands.util.avatar", "commands.util.clear", "commands.ai.ask"]:
     i += 1
     exec(f"from {str} import {str.split('.')[-1].capitalize()}Cog")
     
