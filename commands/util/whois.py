@@ -21,6 +21,5 @@ class WhoisCog(commands.Cog):
         e.add_field(name="Created at", value=f"{m.created_at}", inline=False)
         e.add_field(name="Joined at", value=f"{m.joined_at}", inline=False)
         e.add_field(name="Bot?", value=f"{m.bot}", inline=False)
-        e.add_field(name="Status", value=f"{m.status}", inline=False)
         
         await ctx.send(embed=e)
