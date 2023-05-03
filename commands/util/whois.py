@@ -1,18 +1,26 @@
 import discord
+import datetime
 
 from discord.ext import commands
 
-class WhoCog(commands.Cog):
+
+class WhoisCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         
     @commands.command(name="whois", aliases=["who"])
     async def whois(self, ctx, m: discord.Member = None):
-        await ctx.send("This command is a wip.")
+        e = discord.Embed(
+            title = f"{m}",
+            description="wip command",
+            color=0x00ff00,
+            timestamp=datetime.datetime.utcnow()
+        )
         
-        await ctx.send(f"Created at: {m.created_at}")
-        await ctx.send(f"Joined at: {m.joined_at}")
-        await ctx.send(f"Roles: {m.roles}")
-        await ctx.send(f"Name: {m.name}+{str(m.discriminator)}")
-        await ctx.send(f"ID: {m.id}")
-        await ctx.send(f"Avatar: {m.avatar}")
+        e.add_field(name="ID", value=f"{m.id}", inline=False)
+        e.add_field(name="Created at", value=f"{m.created_at}", inline=False)
+        e.add_field(name="Joined at", value=f"{m.joined_at}", inline=False)
+        e.add_field(name="Bot?", value=f"{m.bot}", inline=False)
+        e.add_field(name="Status", value=f"{m.status}", inline=False)
+        
+        await ctx.send(embed=e)
