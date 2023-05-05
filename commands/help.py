@@ -36,15 +36,18 @@ class ButtonView(discord.ui.View):
     @discord.ui.button(
         label="",
         style=discord.ButtonStyle.primary,
-        row = 0,
+        row = 1,
         emoji="⬅️"
     )
     
-    @discord.ui.button(
-        label="", 
-        style=discord.ButtonStyle.primary, 
-        row = 1,
-        emoji="➡️")
+
     
     async def button_callback(self, button, interaction):
         return
+
+class DefaultButton(discord.ui.Button):
+    def __init__(self, custom_id, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.custom_id = custom_id
+        
+ButtonView.

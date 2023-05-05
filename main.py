@@ -23,7 +23,9 @@ intent = discord.Intents.default()
 intent.members = True
 intent.message_content = True
 
-Cloud = commands.Bot(command_prefix='$', intents=intent)
+activity = discord.Activity(type=discord.ActivityType.watching, name="heather make this!")
+
+Cloud = commands.Bot(command_prefix='$', intents=intent, activity=activity)
 
 Cloud.remove_command('help')
 
