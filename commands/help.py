@@ -2,9 +2,15 @@ import discord
 
 from discord.ext import commands
 
-class HelpCog(discord.ui.View, commands.Cog):
+class HelpCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+    
+    @commands.command(name="help", aliases=["a"])
+    async def help(self, ctx):
+        await ctx.send(view=View())
+        
+class View(discord.ui.view):
     
     @discord.ui.select(
         placeholder = "Select a category",
@@ -16,10 +22,6 @@ class HelpCog(discord.ui.View, commands.Cog):
             description="Moderation commands."
         )])
     
-    @commands.command(name="help", aliases=["a"])
-    async def help(self, ctx):
-        await ctx.send(view=HelpCog)
-        
     async def callback(self, select, interaction: discord.Interaction):
         e = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00)
         e.add_field(name="Ban", value="Bans a user from the server.", inline=False)
