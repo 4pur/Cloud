@@ -1,3 +1,5 @@
+# idfk why it doesnt work
+
 import discord
 
 from discord.ext import commands
