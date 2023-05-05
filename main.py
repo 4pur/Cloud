@@ -13,7 +13,7 @@ from os          import getenv
 
 i = 0
 
-for str in ["commands.moderation.ban", "commands.moderation.unban", "commands.moderation.kick", "commands.moderation.timeout", "commands.misc.spam", "commands.util.avatar", "commands.util.clear", "commands.util.whois", "commands.ai.ask"]:
+for str in ["commands.moderation.ban", "commands.moderation.unban", "commands.moderation.kick", "commands.moderation.timeout", "commands.misc.spam", "commands.util.avatar", "commands.util.clear", "commands.util.whois", "commands.ai.ask", "commands.help"]:
     i += 1
     exec(f"from {str} import {str.split('.')[-1].capitalize()}Cog")
     
@@ -25,7 +25,9 @@ intent.message_content = True
 
 Cloud = commands.Bot(command_prefix='$', intents=intent)
 
-for cog in [BanCog, UnbanCog, KickCog, TimeoutCog, SpamCog, AvatarCog, ClearCog, WhoisCog, AskCog]:
+Cloud.remove_command('help')
+
+for cog in [BanCog, UnbanCog, KickCog, TimeoutCog, SpamCog, AvatarCog, ClearCog, WhoisCog, AskCog, HelpCog]:
     Cloud.add_cog(cog(Cloud))
 
 logger = logging.getLogger('discord')
