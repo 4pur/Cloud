@@ -1,6 +1,10 @@
 import discord
 
 from discord.ext import commands
+from discord.interactions import Interaction
+from discord.ui.item import Item
+
+from typing import List, Union
 
 class HelpCog(commands.Cog):
     def __init__(self, bot):
@@ -8,6 +12,8 @@ class HelpCog(commands.Cog):
     
     @commands.command(name="help", aliases=["a"])
     async def help(self, ctx):
+        global ctx1 
+        ctx1 = ctx
         await ctx.send(view=SelectView())
         
 class SelectView(discord.ui.View):
@@ -22,32 +28,80 @@ class SelectView(discord.ui.View):
             description="Moderation commands."
         )])
     
-    async def callback(self, select, interaction: discord.Interaction):
+    async def callback(self, x, interaction: discord.Interaction):
         e = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00)
+        
         e.add_field(name="Ban", value="Bans a user from the server.", inline=False)
         e.add_field(name="Unban", value="Unbans a user from the server.", inline=False)
         e.add_field(name="Kick", value="Kicks a user from the server.", inline=False)
         e.add_field(name="Mute", value="Mutes a user.", inline=False)
         e.add_field(name="Unmute", value="Unmutes a user.", inline=False)
         
+        await ctx1.send("Page 1/3")
         await interaction.response.send_message(embed = e, view = ButtonView())
-        
-class ButtonView(discord.ui.View):
-    @discord.ui.button(
-        label="",
-        style=discord.ButtonStyle.primary,
-        row = 1,
-        emoji="⬅️"
-    )
-    
 
-    
-    async def button_callback(self, button, interaction):
-        return
 
-class DefaultButton(discord.ui.Button):
+i = 0
+
+class ForwardButton(discord.ui.Button):
     def __init__(self, custom_id, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.custom_id = custom_id
         
-ButtonView.
+    async def callback(self, x, interaction: discord.Interaction):
+        await ctx1.delete()
+        
+        i += 1
+        
+        em = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00)
+        
+        if i == 1:
+            em.add_field(name="Warn", value="Warns a user.", inline=False)
+            em.add_field(name="Unwarn", value="Unwarns a user.", inline=False)
+            em.add_field(name="warns", value="Shows a user's warns.", inline=False)
+            
+        if i == 2:
+            
+            em.add_field(name="Purge", value="Purges a certain amount of messages.", inline=False)
+            em.add_field(name="Lock", value="Locks a channel.", inline=False)
+            em.add_field(name="Unlock", value="Unlocks a channel.", inline=False)
+            em.add_field(name="Slowmode", value="Sets a channel's slowmode.", inline=False)
+            em.add_field(name="Nuke", value="Nukes a channel.", inline=False)
+            
+        await ctx1.send(embed = em, view = ButtonView())
+
+class BackButton(discord.ui.Button):
+    def __init__(self, custom_id, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.custom_id = custom_id
+        
+    async def callback(self, x, interaction: Interaction):
+        await ctx1.delete()
+        
+        if i == 0:
+            return
+        
+        i -= 1
+        
+        emb = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00)
+        
+        if i == 1:
+            emb.add_field(name="Warn", value="Warns a user.", inline=False)
+            emb.add_field(name="Unwarn", value="Unwarns a user.", inline=False)
+            emb.add_field(name="Warns", value="Shows a user's warns.", inline=False)
+            
+        if i == 2:
+            
+            emb.add_field(name="Purge", value="Purges a certain amount of messages.", inline=False)
+            emb.add_field(name="Lock", value="Locks a channel.", inline=False)
+            emb.add_field(name="Unlock", value="Unlocks a channel.", inline=False)
+            emb.add_field(name="Slowmode", value="Sets a channel's slowmode.", inline=False)
+            emb.add_field(name="Nuke", value="Nukes a channel.", inline=False)
+        
+        await ctx1.send(embed = emb, view = ButtonView())
+        
+class ButtonView(discord.ui.View):
+    def __init__(self):
+        super().__init__()
+        self.add_item(ForwardButton(custom_id="forward"))
+        self.add_item(BackButton(custom_id="back"))
