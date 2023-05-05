@@ -8,9 +8,9 @@ class HelpCog(commands.Cog):
     
     @commands.command(name="help", aliases=["a"])
     async def help(self, ctx):
-        await ctx.send(view=View())
+        await ctx.send(view=SelectView())
         
-class View(discord.ui.view):
+class SelectView(discord.ui.View):
     
     @discord.ui.select(
         placeholder = "Select a category",
@@ -28,5 +28,23 @@ class View(discord.ui.view):
         e.add_field(name="Unban", value="Unbans a user from the server.", inline=False)
         e.add_field(name="Kick", value="Kicks a user from the server.", inline=False)
         e.add_field(name="Mute", value="Mutes a user.", inline=False)
+        e.add_field(name="Unmute", value="Unmutes a user.", inline=False)
         
-        await interaction.response.send_message(embed = e)
+        await interaction.response.send_message(embed = e, view = ButtonView())
+        
+class ButtonView(discord.ui.View):
+    @discord.ui.button(
+        label="",
+        style=discord.ButtonStyle.primary,
+        row = 0,
+        emoji="⬅️"
+    )
+    
+    @discord.ui.button(
+        label="", 
+        style=discord.ButtonStyle.primary, 
+        row = 1,
+        emoji="➡️")
+    
+    async def button_callback(self, button, interaction):
+        return
