@@ -17,9 +17,6 @@ A discord bot, with lots of customizable features!
 
 ## TODO
 
-- [x] Make the bot work
-- [x] Add moderation tools
-- [ ] Add responses
-- [ ] Add music player
-- [ ] Add AI Support (WIP)
-- [ ] Improve Error UX, and User UX
+- [ ] Finish help command
+- [ ] Add tickets
+- [ ] Add custom embeds
