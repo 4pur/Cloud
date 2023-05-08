@@ -16,5 +16,5 @@ class WarnCog(commands.Cog):
         await ctx.send(f"{member.mention} has been warned for {reason}.")
         await ctx.message.delete()
 
-        with open(f'warns/{member.id}.csv', 'a') as w:
+        with open(f'warns/{ctx.guild.id}/{member.id}.csv', 'a') as w:
             w.write(f"Warned for {reason}, on {datetime.now().strftime('%Y-%m-%d at %H:%M:%S UTC')}\n")
