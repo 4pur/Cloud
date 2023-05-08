@@ -14,10 +14,7 @@ class WarnCog(commands.Cog):
             reason = "No reason provided."
         await member.send(f"You have been warned in {ctx.guild.name} for {reason}.")
         await ctx.send(f"{member.mention} has been warned for {reason}.")
-
         await ctx.message.delete()
-        warns = reason, member.name
-        
 
         with open(f'warns/{member.id}.csv', 'a') as w:
-            w.write(f"Warned for '{reason}', on {datetime.now().strftime('%Y-%m-%d at %H:%M:%S UTC')}\n")
+            w.write(f"Warned for {reason}, on {datetime.now().strftime('%Y-%m-%d at %H:%M:%S UTC')}\n")
