@@ -4,9 +4,6 @@ import discord
 
 from discord.ext import commands
 from discord.interactions import Interaction
-from discord.ui.item import Item
-
-from typing import List, Union
 
 class HelpCog(commands.Cog):
     def __init__(self, bot):
