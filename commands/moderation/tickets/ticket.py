@@ -9,7 +9,7 @@ class TicketCog(commands.Cog):
     
     @commands.command(name="ticket", aliases=["t"])
     @commands.has_permissions(manage_messages=True)
-    async def ticket(self, ctx, title: str = None, desc: str = None, id: int = None):
+    async def ticket(self, ctx, title: str = None, desc: str = None, id: discord.CategoryChannel = None):
         e = discord.Embed(title = title, description = desc, color = 0x00ff00)
         e.set_footer(text="Click on the button to make a ticket")
         
@@ -28,10 +28,7 @@ class TicketEmbedView(discord.ui.View):
 
     @discord.ui.button(label="Create Ticket", style=discord.ButtonStyle.green)
     async def create_ticket(self, x, interaction: discord.Interaction): 
-        await interaction.response.send_message("Creating Ticket...", ephemeral=True)
-        await interaction.message.delete()
-        await interaction.channel.send("Ticket Created!", embed=discord.Embed(title=self.title, description=self.desc))
-        await interaction.channel.set_permissions(interaction.user, read_messages=True, send_messages=True)
+        await interaction.response.send_message("Ticket Created...", ephemeral=True)
         await interaction.guild.create_text_channel(name=f"ticket-{interaction.user}", category=self.id, reason=None)
-        await interaction.channel.send(f"Ticket Created! <#{interaction.guild.get_channel(interaction.guild.get_channel())}>")
-        await interaction.channel.set_permissions(interaction.guild.get_role(interaction.guild.get_channel(interaction.guild.get_channel())), read_messages=False, send_messages=False)
+        interaction.guild.get_channel(f"ticket-{interaction.user}").send(f"Ticket Created By {interaction.user.mention}")
+        interaction.guild.get_channel(f"ticket-{interaction.user}").set_permissions(interaction.user, read_messages=True, send_messages=True) 
