@@ -1,6 +1,7 @@
 import discord
 
 from discord.ext import commands
+from discord.ui.input_text import InputText
 
 class TicketCog(commands.Cog):
     def __init__(self, bot):
@@ -9,29 +10,24 @@ class TicketCog(commands.Cog):
     @commands.command(name="ticket", aliases=["t"])
     @commands.has_permissions(manage_messages=True)
     async def ticket(self, ctx):
-        await ctx.send(view=CreateView())
+        await ctx.send(view=TicketPromptView())
         
-class CreateView(discord.ui.View):
+class TicketPromptView(discord.ui.View):
     def __init__(self):
         super().__init__()
-        self.value = None
+        self.add_item(discord.ui.Button(label="Create Ticket Embed", custom_id="create_ticket_embed", style=discord.ButtonStyle.green))
+    
+    async def callback(self, interaction: discord.Interaction):
+        await interaction.response.send_modal(CreateTicketPromptModal(title="Create Ticket Embed", description="Please enter the ticket categor(ies) and description."))
+
+class CreateTicketPromptModal(discord.ui.Modal):
+    def __init__(self, *args, **kwargs):
+        super().__init__(timeout=60.00, *args, **kwargs)
+        self.add_item(discord.ui.InputText(label="Ticket Category"))
+        self.add_item(discord.ui.InputText(label="Ticket Description", style = discord.InputTextStyle.long))
         
-    @discord.ui.button(label="Create Ticket", style=discord.ButtonStyle.green)
-    async def create(self, button: discord.ui.Button, interaction: discord.Interaction):
-        await interaction.response.send_message("Ticket created!", ephemeral=True)
-        await interaction.message.delete()
-        
-        channel = await interaction.guild.create_text_channel(f"ticket-{interaction.user.name}", category=interaction.channel.category)
-        await channel.set_permissions(interaction.guild.default_role, read_messages=False)
-        await channel.set_permissions(interaction.user, read_messages=True)
-        
-        e = discord.Embed(title="Ticket", description="Ticket created!", color=0x00ff00)
-        e.add_field(name="Channel", value=channel.mention)
-        e.add_field(name="User", value=interaction.user.mention)
-        
-        await interaction.user.send(embed=e)
-        
-    @discord.ui.button(label="Cancel", style=discord.ButtonStyle.red)
-    async def cancel(self, button: discord.ui.Button, interaction: discord.Interaction):
-        await interaction.response.send_message("Ticket cancelled!", ephemeral=True)
-        await interaction.message.delete()
+    async def callback(self, interaction: discord.Interaction):
+        embed = discord.Embed(title="Modal Results")
+        embed.add_field(name="Short Input", value=self.children[0].value)
+        embed.add_field(name="Long Input", value=self.children[1].value)
+        await interaction.response.send_message(embeds=[embed])
