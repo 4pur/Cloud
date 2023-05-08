@@ -28,7 +28,7 @@ class TicketEmbedView(discord.ui.View):
 
     @discord.ui.button(label="Create Ticket", style=discord.ButtonStyle.green)
     async def create_ticket(self, x, interaction: discord.Interaction): 
-        await interaction.response.send_message("Ticket Created...", ephemeral=True)
-        await interaction.guild.create_text_channel(name=f"ticket-{interaction.user}", category=self.id, reason=None)
+        channel = await interaction.guild.create_text_channel(name=f"ticket-{interaction.user}", category=self.id, reason=None)
         interaction.guild.get_channel(f"ticket-{interaction.user}").send(f"Ticket Created By {interaction.user.mention}")
-        interaction.guild.get_channel(f"ticket-{interaction.user}").set_permissions(interaction.user, read_messages=True, send_messages=True) 
+        interaction.guild.get_channel(f"ticket-{interaction.user}").set_permissions(interaction.user, read_messages=True, send_messages=True)
+        await interaction.channel.send(f"ticket created... {channel.mention})
