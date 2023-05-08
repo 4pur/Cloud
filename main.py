@@ -1,7 +1,5 @@
 ## TODO ## 
 # - Add a command to change the prefix
-# - Add a whois command
-# - Add a help command (maybe)
 
 
 import discord
