@@ -5,6 +5,8 @@ import discord
 from discord.ext import commands
 from discord.interactions import Interaction
 
+i = 0
+
 class HelpCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -40,25 +42,29 @@ class SelectView(discord.ui.View):
         await interaction.response.send_message(embed = e, view = ButtonView())
 
 
-i = 0
-
 class ForwardButton(discord.ui.Button):
     def __init__(self, custom_id, label, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.custom_id = custom_id
         self.label = label
         
-    async def callback(self, x, interaction: discord.Interaction):
-        await ctx1.delete()
-        
+    async def callback(self, interaction: discord.Interaction):
+        global i
         i += 1
         
         e = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00)
         
+        if i == 0:
+            e.add_field(name="Ban", value="Bans a user from the server.", inline=False)
+            e.add_field(name="Unban", value="Unbans a user from the server.", inline=False)
+            e.add_field(name="Kick", value="Kicks a user from the server.", inline=False)
+            e.add_field(name="Mute", value="Mutes a user.", inline=False)
+            e.add_field(name="Unmute", value="Unmutes a user.", inline=False)
+        
         if i == 1:
             e.add_field(name="Warn", value="Warns a user.", inline=False)
             e.add_field(name="Unwarn", value="Unwarns a user.", inline=False)
-            e.add_field(name="warns", value="Shows a user's warns.", inline=False)
+            e.add_field(name="Warns", value="Shows a user's warns.", inline=False)
             
         if i == 2:
             
@@ -76,15 +82,19 @@ class BackButton(discord.ui.Button):
         self.custom_id = custom_id
         self.label = label
         
-    async def callback(self, x, interaction: Interaction):
-        await ctx1.delete()
-        
-        if i == 0:
-            return
-        
+    async def callback(self, interaction: Interaction):
+        global i
         i -= 1
-        
+
         e = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00)
+
+        if i == 0:
+            e.add_field(name="Ban", value="Bans a user from the server.", inline=False)
+            e.add_field(name="Unban", value="Unbans a user from the server.", inline=False)
+            e.add_field(name="Kick", value="Kicks a user from the server.", inline=False)
+            e.add_field(name="Mute", value="Mutes a user.", inline=False)
+            e.add_field(name="Unmute", value="Unmutes a user.", inline=False)
+        
         
         if i == 1:
             e.add_field(name="Warn", value="Warns a user.", inline=False)
