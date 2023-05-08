@@ -43,36 +43,38 @@ class SelectView(discord.ui.View):
 i = 0
 
 class ForwardButton(discord.ui.Button):
-    def __init__(self, custom_id, *args, **kwargs):
+    def __init__(self, custom_id, label, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.custom_id = custom_id
+        self.label = label
         
     async def callback(self, x, interaction: discord.Interaction):
         await ctx1.delete()
         
         i += 1
         
-        em = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00)
+        e = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00)
         
         if i == 1:
-            em.add_field(name="Warn", value="Warns a user.", inline=False)
-            em.add_field(name="Unwarn", value="Unwarns a user.", inline=False)
-            em.add_field(name="warns", value="Shows a user's warns.", inline=False)
+            e.add_field(name="Warn", value="Warns a user.", inline=False)
+            e.add_field(name="Unwarn", value="Unwarns a user.", inline=False)
+            e.add_field(name="warns", value="Shows a user's warns.", inline=False)
             
         if i == 2:
             
-            em.add_field(name="Purge", value="Purges a certain amount of messages.", inline=False)
-            em.add_field(name="Lock", value="Locks a channel.", inline=False)
-            em.add_field(name="Unlock", value="Unlocks a channel.", inline=False)
-            em.add_field(name="Slowmode", value="Sets a channel's slowmode.", inline=False)
-            em.add_field(name="Nuke", value="Nukes a channel.", inline=False)
+            e.add_field(name="Purge", value="Purges a certain amount of messages.", inline=False)
+            e.add_field(name="Lock", value="Locks a channel.", inline=False)
+            e.add_field(name="Unlock", value="Unlocks a channel.", inline=False)
+            e.add_field(name="Slowmode", value="Sets a channel's slowmode.", inline=False)
+            e.add_field(name="Nuke", value="Nukes a channel.", inline=False)
             
-        await ctx1.send(embed = em, view = ButtonView())
+        await interaction.response.edit_message(embed = e, view = ButtonView())
 
 class BackButton(discord.ui.Button):
-    def __init__(self, custom_id, *args, **kwargs):
+    def __init__(self, custom_id, label, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.custom_id = custom_id
+        self.label = label
         
     async def callback(self, x, interaction: Interaction):
         await ctx1.delete()
@@ -82,25 +84,25 @@ class BackButton(discord.ui.Button):
         
         i -= 1
         
-        emb = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00)
+        e = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00)
         
         if i == 1:
-            emb.add_field(name="Warn", value="Warns a user.", inline=False)
-            emb.add_field(name="Unwarn", value="Unwarns a user.", inline=False)
-            emb.add_field(name="Warns", value="Shows a user's warns.", inline=False)
+            e.add_field(name="Warn", value="Warns a user.", inline=False)
+            e.add_field(name="Unwarn", value="Unwarns a user.", inline=False)
+            e.add_field(name="Warns", value="Shows a user's warns.", inline=False)
             
         if i == 2:
             
-            emb.add_field(name="Purge", value="Purges a certain amount of messages.", inline=False)
-            emb.add_field(name="Lock", value="Locks a channel.", inline=False)
-            emb.add_field(name="Unlock", value="Unlocks a channel.", inline=False)
-            emb.add_field(name="Slowmode", value="Sets a channel's slowmode.", inline=False)
-            emb.add_field(name="Nuke", value="Nukes a channel.", inline=False)
+            e.add_field(name="Purge", value="Purges a certain amount of messages.", inline=False)
+            e.add_field(name="Lock", value="Locks a channel.", inline=False)
+            e.add_field(name="Unlock", value="Unlocks a channel.", inline=False)
+            e.add_field(name="Slowmode", value="Sets a channel's slowmode.", inline=False)
+            e.add_field(name="Nuke", value="Nukes a channel.", inline=False)
         
-        await ctx1.send(embed = emb, view = ButtonView())
+        await interaction.response.edit_message(embed = e, view = ButtonView())
         
 class ButtonView(discord.ui.View):
     def __init__(self):
         super().__init__()
-        self.add_item(ForwardButton(custom_id="forward"))
-        self.add_item(BackButton(custom_id="back"))
+        self.add_item(BackButton(custom_id="back", label="Previous Page"))
+        self.add_item(ForwardButton(custom_id="forward", label="Next Page"))
