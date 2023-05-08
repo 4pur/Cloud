@@ -74,6 +74,11 @@ class ForwardButton(discord.ui.Button):
             e.add_field(name="Slowmode", value="Sets a channel's slowmode.", inline=False)
             e.add_field(name="Nuke", value="Nukes a channel.", inline=False)
             
+        if i == 3:
+            e.add_field(name="Ticket <title> <desc> <id>", value = "Creates an embed, with a button to create a ticket, id is the category the tickets are created in.")
+            e.add_field(name="Close", value = "Closes a ticket.")
+            e.add_field(name="Add", value = "Adds a user to a ticket.")
+            e.add_field(name="Remove", value = "Removes a user from a ticket.")
         await interaction.response.edit_message(embed = e, view = ButtonView())
 
 class BackButton(discord.ui.Button):
