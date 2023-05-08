@@ -13,7 +13,23 @@ from os          import getenv
 
 i = 0
 
-for str in ["commands.moderation.ban", "commands.moderation.unban", "commands.moderation.kick", "commands.moderation.timeout", "commands.misc.spam", "commands.util.avatar", "commands.util.clear", "commands.util.whois", "commands.ai.ask", "commands.help", "commands.moderation.warnings.warn", "commands.moderation.warnings.warns", "commands.moderation.warnings.cw", "commands.moderation.tickets.tickets"]:
+for str in ["commands.moderation.ban", 
+            "commands.moderation.unban",
+            "commands.moderation.kick",
+            "commands.moderation.timeout",
+            "commands.misc.spam",
+            "commands.util.avatar", 
+            "commands.util.clear",
+            "commands.util.whois",
+            "commands.ai.ask",
+            "commands.help",
+            "commands.moderation.warnings.warn",
+            "commands.moderation.warnings.warns",
+            "commands.moderation.warnings.cw",
+            "commands.moderation.tickets.ticket",
+            "commands.moderation.tickets.close"]:
+    
+    
     i += 1
     exec(f"from {str} import {str.split('.')[-1].capitalize()}Cog")
     
@@ -43,7 +59,8 @@ for cog in [
     WarnCog,
     WarnsCog,
     CwCog,
-    TicketCog]:
+    TicketCog,
+    CloseCog]:
     
     Cloud.add_cog(cog(Cloud))
 
