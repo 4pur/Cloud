@@ -18,6 +18,6 @@ A discord bot, with lots of customizable features!
 ## TODO
 
 - [x] Finish help command
-- [ ] Add tickets
-- [ ] Finish warning system
+- [x] Add tickets
+- [x] Finish warning system
 - [ ] Add more moderation commands
