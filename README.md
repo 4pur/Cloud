@@ -17,6 +17,7 @@ A discord bot, with lots of customizable features!
 
 ## TODO
 
-- [ ] Finish help command
+- [x] Finish help command
 - [ ] Add tickets
-- [ ] Add custom embeds
+- [ ] Finish warning system
+- [ ] Add more moderation commands

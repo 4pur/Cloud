@@ -14,3 +14,6 @@ commands/misc/__pycache__
 
 # bot logs
 discord.log
+
+# warn
+warns/

@@ -1,5 +1,4 @@
-# idfk why it doesnt work
-
+import datetime
 import discord
 
 from discord.ext import commands
@@ -30,15 +29,14 @@ class SelectView(discord.ui.View):
         )])
     
     async def callback(self, x, interaction: discord.Interaction):
-        e = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00)
+        e = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00, timestamp = datetime.datetime.utcnow())
         
         e.add_field(name="Ban", value="Bans a user from the server.", inline=False)
         e.add_field(name="Unban", value="Unbans a user from the server.", inline=False)
         e.add_field(name="Kick", value="Kicks a user from the server.", inline=False)
         e.add_field(name="Mute", value="Mutes a user.", inline=False)
         e.add_field(name="Unmute", value="Unmutes a user.", inline=False)
-        
-        await ctx1.send("Page 1/3")
+
         await interaction.response.send_message(embed = e, view = ButtonView())
 
 
@@ -52,7 +50,10 @@ class ForwardButton(discord.ui.Button):
         global i
         i += 1
         
-        e = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00)
+        e = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00, timestamp = datetime.datetime.utcnow())
+        
+        if i > 2:
+            i -= 1
         
         if i == 0:
             e.add_field(name="Ban", value="Bans a user from the server.", inline=False)
@@ -64,7 +65,6 @@ class ForwardButton(discord.ui.Button):
         if i == 1:
             e.add_field(name="Warn", value="Warns a user.", inline=False)
             e.add_field(name="Unwarn", value="Unwarns a user.", inline=False)
-            e.add_field(name="Warns", value="Shows a user's warns.", inline=False)
             
         if i == 2:
             
@@ -86,7 +86,10 @@ class BackButton(discord.ui.Button):
         global i
         i -= 1
 
-        e = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00)
+        e = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00, timestamp = datetime.datetime.utcnow())
+
+        if i < 0:
+            i += 1
 
         if i == 0:
             e.add_field(name="Ban", value="Bans a user from the server.", inline=False)
@@ -99,7 +102,6 @@ class BackButton(discord.ui.Button):
         if i == 1:
             e.add_field(name="Warn", value="Warns a user.", inline=False)
             e.add_field(name="Unwarn", value="Unwarns a user.", inline=False)
-            e.add_field(name="Warns", value="Shows a user's warns.", inline=False)
             
         if i == 2:
             
