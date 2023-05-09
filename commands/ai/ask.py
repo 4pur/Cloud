@@ -1,14 +1,14 @@
 import discord
+import openai
 import os
+
 
 from discord.ext import commands
 from dotenv import load_dotenv
-from openai import ChatCompletion, api_key
+from openai import ChatCompletion
 
 load_dotenv()
-api_key = os.getenv("OPENAI_TOKEN")
-
-
+openai.api_key = os.getenv("OPENAI_TOKEN")
 
 class AskCog(commands.Cog):
     def __init__(self, bot):

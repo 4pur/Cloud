@@ -25,11 +25,13 @@ class TicketEmbedModalCreator(discord.ui.Modal):
         
         
     async def callback(self, interaction: discord.Interaction):
-        embed = discord.Embed(self.children[0].value)
-        embed.add_field(value=self.children[1].value)
+        embed = discord.Embed(title = self.children[0].value)
+        embed.add_field(name = "", value=self.children[1].value)
+        
         global category
-        catergory = self.children[2].value
-        interaction.channel.send(embed=embed)
+        category = self.children[2].value
+        
+        interaction.channel.send(embed=embed, view = CreateTicketButtonView())
 
 class TicketEmbedView(discord.ui.View):
     def __init__(self):
@@ -39,3 +41,16 @@ class TicketEmbedView(discord.ui.View):
     
     async def callback(self, x, interaction: discord.Interaction):
         await interaction.response.send_modal(TicketEmbedModalCreator(custom_id="ticket"))
+        
+        
+class CreateTicketButtonView(discord.ui.View):
+    def __init__(self):
+        super().__init__()
+        
+    @discord.ui.button(label="Create Ticket", style=discord.ButtonStyle.green, custom_id="create_ticket")
+    
+    async def callback(self, x, interaction: discord.Interaction):
+        channel = await interaction.guild.create_text_channel(name=f"ticket-{interaction.user.name}", category=category)
+        channel.send(f"ticket created by {interaction.user.mention}")
+        
+        await interaction.response.send_message(f"ticket created, {channel.mention}", ephemeral=True)
