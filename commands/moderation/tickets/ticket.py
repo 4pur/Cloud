@@ -17,17 +17,19 @@ class TicketCog(commands.Cog):
             await ctx.send("No title or description, try again.")
         else:
             await ctx.message.delete()
-            await ctx.send(embed = e, view = TicketEmbedView(title = title, desc = desc, id = id))
+            await ctx.send(embed = e, view = TicketEmbedView())
+
+
+class TicketEmbedModalCreator(discord.ui.Modal):
+    def __init__(self, custom_id):
+        super().__init__(timeout=None)
+        self.custom_id = custom_id
+        
+        self.add_item(InputText(label="Title", placeholder="Enter a title", custom_id="title"))
+        self.add_item(InputText(label="Description", placeholder="Enter a description", custom_id="desc"))
+        self.add_item(InputText(label="Category ID", placeholder="Enter a category ID for tickets to be created in", custom_id="id"))
 
 class TicketEmbedView(discord.ui.View):
-    def __init__(self, title, desc, id):
+    def __init__(self):
         super().__init__()
-        self.title = title
-        self.desc = desc
-        self.id = id
-
-    @discord.ui.button(label="Create Ticket", style=discord.ButtonStyle.green)
-    async def create_ticket(self, x, interaction: discord.Interaction): 
-        channel = await interaction.guild.create_text_channel(name=f"ticket-{interaction.user}", category=self.id, reason=None)
-        await channel.send(f"created by {interaction.user.mention}")
-        await channel.set_permissions(interaction.user, read_messages=True, send_messages=True)
+        self.add_item(TicketEmbedModalCreator(custom_id="ticket"))
