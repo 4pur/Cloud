@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from openai import ChatCompletion
 
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_TOKEN")
+api_key = os.getenv("OPENAI_TOKEN")
 
 class AskCog(commands.Cog):
     def __init__(self, bot):
