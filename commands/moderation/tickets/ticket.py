@@ -9,27 +9,33 @@ class TicketCog(commands.Cog):
     
     @commands.command(name="ticket", aliases=["t"])
     @commands.has_permissions(manage_messages=True)
-    async def ticket(self, ctx, title: str = None, desc: str = None, id: discord.CategoryChannel = None):
-        e = discord.Embed(title = title, description = desc, color = 0x00ff00)
-        e.set_footer(text="Click on the button to make a ticket")
+    async def ticket(self, ctx, title: str = None, desc: str = None):
+        await ctx.send(view = TicketEmbedView(), delete_after = 60)
         
-        if title == None or desc == None:
-            await ctx.send("No title or description, try again.")
-        else:
-            await ctx.message.delete()
-            await ctx.send(embed = e, view = TicketEmbedView())
 
 
 class TicketEmbedModalCreator(discord.ui.Modal):
     def __init__(self, custom_id):
-        super().__init__(timeout=None)
+        super().__init__(title = "Ticket Creator")
         self.custom_id = custom_id
         
         self.add_item(InputText(label="Title", placeholder="Enter a title", custom_id="title"))
         self.add_item(InputText(label="Description", placeholder="Enter a description", custom_id="desc"))
         self.add_item(InputText(label="Category ID", placeholder="Enter a category ID for tickets to be created in", custom_id="id"))
+        
+        
+    async def callback(self, interaction: discord.Interaction):
+        embed = discord.Embed(self.children[0].value)
+        embed.add_field(value=self.children[1].value)
+        global category
+        catergory = self.children[2].value
+        interaction.channel.send(embed=embed)
 
 class TicketEmbedView(discord.ui.View):
     def __init__(self):
         super().__init__()
-        self.add_item(TicketEmbedModalCreator(custom_id="ticket"))
+        
+    @discord.ui.button(label="Create Form", style=discord.ButtonStyle.green, custom_id="create_ticket_form")
+    
+    async def callback(self, x, interaction: discord.Interaction):
+        await interaction.response.send_modal(TicketEmbedModalCreator(custom_id="ticket"))

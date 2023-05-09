@@ -6,7 +6,7 @@ class BanCog(commands.Cog):
         self.bot = bot
         
     @commands.command()
-    # @commands.has_guild_permissions(moderate_members = True)
+    @commands.has_guild_permissions(moderate_members = True)
     async def ban(self, ctx, m: discord.Member, r = str):
         if m == None:
             ctx.send("You did not provide a user to ban.")
