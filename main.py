@@ -39,7 +39,7 @@ intent = discord.Intents.default()
 intent.members = True
 intent.message_content = True
 
-activity = discord.Activity(type=discord.ActivityType.watching, name="heather make this!")
+activity = discord.Activity(type=discord.ActivityType.watching, name="ry make this!")
 
 Cloud = commands.Bot(command_prefix='$', intents=intent, activity=activity)
 
