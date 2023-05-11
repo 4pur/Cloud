@@ -17,3 +17,5 @@ discord.log
 
 # warn
 warns/
+
+.gitpod.yml

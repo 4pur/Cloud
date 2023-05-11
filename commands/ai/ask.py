@@ -2,19 +2,18 @@ import discord
 import openai
 import os
 
-
 from discord.ext import commands
 from dotenv import load_dotenv
 from openai import ChatCompletion
 
 load_dotenv()
-api_key = os.getenv("OPENAI_TOKEN")
+openai.api_key = os.getenv("OPENAI_TOKEN")
 
 class AskCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
-    @commands.command(name="ask", aliases=["askai", "openai", "gpt"])
+    @commands.command(name="ai", aliases=["askai", "openai", "gpt"])
     async def ask(self, ctx, prompt: discord.Message = None):
         response = ChatCompletion.create(
             model="gpt-3.5-turbo",
