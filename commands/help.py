@@ -39,6 +39,11 @@ class SelectView(discord.ui.View):
 
         await interaction.response.send_message(embed = e, view = ButtonView())
 
+class MiscView(discord.ui.View):
+    def __init__(self, custom_id, label, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.custom_id = custom_id
+        self.label = label
 
 class ForwardButton(discord.ui.Button):
     def __init__(self, custom_id, label, *args, **kwargs):
@@ -65,6 +70,7 @@ class ForwardButton(discord.ui.Button):
         if i == 1:
             e.add_field(name="Warn", value="Warns a user.", inline=False)
             e.add_field(name="Unwarn", value="Unwarns a user.", inline=False)
+            e.add_field(name="Warns", value = "View a user's warnings")
             
         if i == 2:
             
@@ -75,7 +81,7 @@ class ForwardButton(discord.ui.Button):
             e.add_field(name="Nuke", value="Nukes a channel.", inline=False)
             
         if i == 3:
-            e.add_field(name="Ticket <title> <desc> <id>", value = "Creates an embed, with a button to create a ticket, id is the category the tickets are created in.")
+            e.add_field(name="Ticket", value = "Creates an embed, with a button to create a ticket, id is the category the tickets are created in.")
             e.add_field(name="Close", value = "Closes a ticket.")
             e.add_field(name="Add", value = "Adds a user to a ticket.")
             e.add_field(name="Remove", value = "Removes a user from a ticket.")
@@ -107,7 +113,7 @@ class BackButton(discord.ui.Button):
         if i == 1:
             e.add_field(name="Warn", value="Warns a user.", inline=False)
             e.add_field(name="Unwarn", value="Unwarns a user.", inline=False)
-            
+            e.add_field(name="Warns", value = "View a user's warnings")
         if i == 2:
             
             e.add_field(name="Purge", value="Purges a certain amount of messages.", inline=False)
@@ -123,3 +129,4 @@ class ButtonView(discord.ui.View):
         super().__init__()
         self.add_item(BackButton(custom_id="back", label="Previous Page"))
         self.add_item(ForwardButton(custom_id="forward", label="Next Page"))
+
