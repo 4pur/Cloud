@@ -9,8 +9,9 @@ class CloseCog(commands.Cog):
     @commands.command(name="close", aliases=["c"])
     @commands.has_permissions(manage_messages=True)
     async def close(self, ctx):
-        e = discord.Embed(title="Ticket Closed", description="The ticket has been closed by a moderator.", color=0xff0000)
-        await ctx.channel.send(embed=e)
-        await ctx.channel.delete()
         if ctx.channel.name != "ticket-{}".format(ctx.author):
             await ctx.send("This is not a ticket channel.")
+        else:
+            e = discord.Embed(title="Ticket Closed", description="The ticket has been closed by a moderator.", color=0xff0000)
+            await ctx.channel.send(embed=e)
+            await ctx.channel.delete()
