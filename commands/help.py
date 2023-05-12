@@ -6,6 +6,26 @@ from discord.interactions import Interaction
 
 i = 0
 
+ban =       "Bans a user from the server."
+unban =     "Unbans a user from the server."
+kick =      "Kicks a user from the server."
+mute =      "Mutes a user."
+unmute =    "Unmutes a user."
+
+warn =      "Warns a user."
+warns =     "View a user's warnings"
+
+purge =     "Purges a certain amount of messages."
+lock =      "Locks a channel."
+unlock =    "Unlocks a channel."
+slowmode =  "Sets a channel's slowmode."
+nuke =      "Nukes a channel."
+
+ticket =    "Creates an embed, with a button to create a ticket, id is the category the tickets are created in."
+close =     "Closes a ticket."
+add =       "Adds a user to a ticket."
+remove =    "Removes a user from a ticket."
+
 class HelpCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -31,11 +51,11 @@ class SelectView(discord.ui.View):
     async def callback(self, x, interaction: discord.Interaction):
         e = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00, timestamp = datetime.datetime.utcnow())
         
-        e.add_field(name="Ban", value="Bans a user from the server.", inline=False)
-        e.add_field(name="Unban", value="Unbans a user from the server.", inline=False)
-        e.add_field(name="Kick", value="Kicks a user from the server.", inline=False)
-        e.add_field(name="Mute", value="Mutes a user.", inline=False)
-        e.add_field(name="Unmute", value="Unmutes a user.", inline=False)
+        e.add_field(name="Ban", value=ban, inline=False)
+        e.add_field(name="Unban", value=unban, inline=False)
+        e.add_field(name="Kick", value=kick, inline=False)
+        e.add_field(name="Mute", value=mute, inline=False)
+        e.add_field(name="Unmute", value=unmute, inline=False)
 
         await interaction.response.send_message(embed = e, view = ButtonView())
 
@@ -61,30 +81,29 @@ class ForwardButton(discord.ui.Button):
             i -= 1
         
         if i == 0:
-            e.add_field(name="Ban", value="Bans a user from the server.", inline=False)
-            e.add_field(name="Unban", value="Unbans a user from the server.", inline=False)
-            e.add_field(name="Kick", value="Kicks a user from the server.", inline=False)
-            e.add_field(name="Mute", value="Mutes a user.", inline=False)
-            e.add_field(name="Unmute", value="Unmutes a user.", inline=False)
+            e.add_field(name="Ban", value=ban, inline=False)
+            e.add_field(name="Unban", value=unban, inline=False)
+            e.add_field(name="Kick", value=kick, inline=False)
+            e.add_field(name="Mute", value=mute, inline=False)
+            e.add_field(name="Unmute", value=unmute, inline=False)
         
         if i == 1:
-            e.add_field(name="Warn", value="Warns a user.", inline=False)
-            e.add_field(name="Unwarn", value="Unwarns a user.", inline=False)
-            e.add_field(name="Warns", value = "View a user's warnings")
+            e.add_field(name="Warn", value=warn, inline=False)
+            e.add_field(name="Warns", value = warns)
             
         if i == 2:
             
-            e.add_field(name="Purge", value="Purges a certain amount of messages.", inline=False)
-            e.add_field(name="Lock", value="Locks a channel.", inline=False)
-            e.add_field(name="Unlock", value="Unlocks a channel.", inline=False)
-            e.add_field(name="Slowmode", value="Sets a channel's slowmode.", inline=False)
-            e.add_field(name="Nuke", value="Nukes a channel.", inline=False)
+            e.add_field(name="Purge", value=purge, inline=False)
+            e.add_field(name="Lock", value=lock, inline=False)
+            e.add_field(name="Unlock", value=unlock, inline=False)
+            e.add_field(name="Slowmode", value=slowmode, inline=False)
+            e.add_field(name="Nuke", value=nuke, inline=False)
             
         if i == 3:
-            e.add_field(name="Ticket", value = "Creates an embed, with a button to create a ticket, id is the category the tickets are created in.")
-            e.add_field(name="Close", value = "Closes a ticket.")
-            e.add_field(name="Add", value = "Adds a user to a ticket.")
-            e.add_field(name="Remove", value = "Removes a user from a ticket.")
+            e.add_field(name="Ticket", value = ticket, inline = False)
+            e.add_field(name="Close", value = close, inline = False)
+            e.add_field(name="Add", value = add, inline = False)
+            e.add_field(name="Remove", value = remove, inline = False)
         await interaction.response.edit_message(embed = e, view = ButtonView())
 
 class BackButton(discord.ui.Button):
@@ -103,24 +122,29 @@ class BackButton(discord.ui.Button):
             i += 1
 
         if i == 0:
-            e.add_field(name="Ban", value="Bans a user from the server.", inline=False)
-            e.add_field(name="Unban", value="Unbans a user from the server.", inline=False)
-            e.add_field(name="Kick", value="Kicks a user from the server.", inline=False)
-            e.add_field(name="Mute", value="Mutes a user.", inline=False)
-            e.add_field(name="Unmute", value="Unmutes a user.", inline=False)
-        
+            e.add_field(name="Ban", value=ban, inline=False)
+            e.add_field(name="Unban", value=unban, inline=False)
+            e.add_field(name="Kick", value=kick, inline=False)
+            e.add_field(name="Mute", value=mute, inline=False)
+            e.add_field(name="Unmute", value=unmute, inline=False)
         
         if i == 1:
-            e.add_field(name="Warn", value="Warns a user.", inline=False)
-            e.add_field(name="Unwarn", value="Unwarns a user.", inline=False)
-            e.add_field(name="Warns", value = "View a user's warnings")
+            e.add_field(name="Warn", value=warn, inline=False)
+            e.add_field(name="Warns", value = warns)
+            
         if i == 2:
             
-            e.add_field(name="Purge", value="Purges a certain amount of messages.", inline=False)
-            e.add_field(name="Lock", value="Locks a channel.", inline=False)
-            e.add_field(name="Unlock", value="Unlocks a channel.", inline=False)
-            e.add_field(name="Slowmode", value="Sets a channel's slowmode.", inline=False)
-            e.add_field(name="Nuke", value="Nukes a channel.", inline=False)
+            e.add_field(name="Purge", value=purge, inline=False)
+            e.add_field(name="Lock", value=lock, inline=False)
+            e.add_field(name="Unlock", value=unlock, inline=False)
+            e.add_field(name="Slowmode", value=slowmode, inline=False)
+            e.add_field(name="Nuke", value=nuke, inline=False)
+            
+        if i == 3:
+            e.add_field(name="Ticket", value = ticket, inline = False)
+            e.add_field(name="Close", value = close, inline = False)
+            e.add_field(name="Add", value = add, inline = False)
+            e.add_field(name="Remove", value = remove, inline = False)
         
         await interaction.response.edit_message(embed = e, view = ButtonView())
         
@@ -129,4 +153,3 @@ class ButtonView(discord.ui.View):
         super().__init__()
         self.add_item(BackButton(custom_id="back", label="Previous Page"))
         self.add_item(ForwardButton(custom_id="forward", label="Next Page"))
-

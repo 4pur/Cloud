@@ -6,7 +6,7 @@ class UnbanCog(commands.Cog):
         
     @commands.command()
     @commands.has_guild_permissions(moderate_members = True)
-    async def unban(self, ctx, m: discord.Member, r = str):
+    async def unban(self, ctx, m: discord.Member):
         if m == None:
             ctx.send("You did not provide a user to unban.")
 
