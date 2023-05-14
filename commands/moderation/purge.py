@@ -9,5 +9,6 @@ class PurgeCog(commands.Cog):
     @commands.command(name = "purge")
     @commands.has_guild_permissions(moderate_members = True)
     async def purge(self, ctx, *, x: int):
-        for i in range(x):
-            return
+        async for m in ctx.channel.history(limit = x):
+            await m.delete()
+        await ctx.send(f"Purged {x} messages.")

@@ -27,7 +27,8 @@ for str in ["commands.moderation.ban",
             "commands.moderation.tickets.close",
             "commands.moderation.tickets.remove",
             "commands.moderation.tickets.add",
-            "commands.moderation.purge"]:
+            "commands.moderation.purge",
+            "commands.moderation.lock"]:
     
     
     i += 1
@@ -62,7 +63,8 @@ for cog in [
     CloseCog,
     AddCog,
     RemoveCog,
-    PurgeCog]:
+    PurgeCog,
+    LockCog]:
     
     Cloud.add_cog(cog(Cloud))
 
