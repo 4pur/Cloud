@@ -30,6 +30,8 @@ autorole = "Gives users a role upon joining the server."
 role = "Gives a user a role."
 removerole = "Removes a role from a user, usage: $removerole <user> <role>"
 
+embed = "Creates a custom embed. usage: $embed <title> <description>"
+
 class HelpCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -79,7 +81,7 @@ class ForwardButton(discord.ui.Button):
         
         e = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00, timestamp = datetime.datetime.utcnow())
         
-        if i > 2:
+        if i > 3:
             i -= 1
         
         if i == 0:
@@ -107,6 +109,10 @@ class ForwardButton(discord.ui.Button):
             e.add_field(name="Close", value = close, inline = False)
             e.add_field(name="Add", value = add, inline = False)
             e.add_field(name="Remove", value = remove, inline = False)
+            
+        if i == 4:
+            e.add_field(name="Embed", value = embed, inline = False)
+            
         await interaction.response.edit_message(embed = e, view = ButtonView())
 
 class BackButton(discord.ui.Button):
@@ -151,6 +157,9 @@ class BackButton(discord.ui.Button):
             e.add_field(name="Close", value = close, inline = False)
             e.add_field(name="Add", value = add, inline = False)
             e.add_field(name="Remove", value = remove, inline = False)
+            
+        if i == 4:
+            e.add_field(name="Embed", value = embed, inline = False)
         
         await interaction.response.edit_message(embed = e, view = ButtonView())
         
