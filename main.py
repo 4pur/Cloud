@@ -31,7 +31,8 @@ for str in ["commands.moderation.essential.ban",
             "commands.moderation.lock",
             "commands.moderation.auto.autorole",
             "commands.moderation.role",
-            "commands.moderation.nuke",]:
+            "commands.moderation.nuke",
+            "commands.misc.embed",]:
     
     
     i += 1
@@ -70,7 +71,8 @@ for cog in [
     LockCog,
     AutoroleCog,
     RoleCog,
-    NukeCog,]:
+    NukeCog,
+    EmbedCog,]:
     
     Cloud.add_cog(cog(Cloud))
 
