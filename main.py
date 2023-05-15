@@ -32,7 +32,7 @@ for str in ["commands.moderation.essential.ban",
             "commands.moderation.auto.autorole",
             "commands.moderation.role",
             "commands.moderation.nuke",
-            "commands.misc.embed",]:
+            "commands.util.embed",]:
     
     
     i += 1
