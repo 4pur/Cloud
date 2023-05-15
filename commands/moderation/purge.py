@@ -7,7 +7,7 @@ class PurgeCog(commands.Cog):
         self.bot = bot
 
     @commands.command(name = "purge")
-    @commands.has_guild_permissions(moderate_members = True)
+    @commands.has_permissions(manage_messages=True)
     async def purge(self, ctx, *, x: int):
         async for m in ctx.channel.history(limit = x):
             await m.delete()
