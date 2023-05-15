@@ -19,12 +19,16 @@ purge =     "Purges a certain amount of messages."
 lock =      "Locks a channel."
 unlock =    "Unlocks a channel."
 slowmode =  "Sets a channel's slowmode."
-nuke =      "Nukes a channel."
+nuke =      "Delete all messages from a channel."
 
 ticket =    "Creates an embed, with a button to create a ticket, id is the category the tickets are created in."
 close =     "Closes a ticket."
 add =       "Adds a user to a ticket."
 remove =    "Removes a user from a ticket."
+
+autorole = "Gives users a role upon joining the server."
+role = "Gives a user a role."
+removerole = "Removes a role from a user, usage: $removerole <user> <role>"
 
 class HelpCog(commands.Cog):
     def __init__(self, bot):
@@ -54,8 +58,6 @@ class SelectView(discord.ui.View):
         e.add_field(name="Ban", value=ban, inline=False)
         e.add_field(name="Unban", value=unban, inline=False)
         e.add_field(name="Kick", value=kick, inline=False)
-        e.add_field(name="Mute", value=mute, inline=False)
-        e.add_field(name="Unmute", value=unmute, inline=False)
 
         await interaction.response.send_message(embed = e, view = ButtonView())
 
@@ -84,12 +86,13 @@ class ForwardButton(discord.ui.Button):
             e.add_field(name="Ban", value=ban, inline=False)
             e.add_field(name="Unban", value=unban, inline=False)
             e.add_field(name="Kick", value=kick, inline=False)
-            e.add_field(name="Mute", value=mute, inline=False)
-            e.add_field(name="Unmute", value=unmute, inline=False)
         
         if i == 1:
             e.add_field(name="Warn", value=warn, inline=False)
             e.add_field(name="Warns", value = warns)
+            e.add_field(name="Autorole", value = autorole, inline = False)
+            e.add_field(name = "Role", value = role, inline = False)
+            e.add_field(name = "removerole (rr)", value = removerole, inline = False)
             
         if i == 2:
             
@@ -116,7 +119,7 @@ class BackButton(discord.ui.Button):
         global i
         i -= 1
 
-        e = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00, timestamp = datetime.datetime.utcnow())
+        e = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00, timestamp = datetime.datetime.now())
 
         if i < 0:
             i += 1
@@ -125,12 +128,15 @@ class BackButton(discord.ui.Button):
             e.add_field(name="Ban", value=ban, inline=False)
             e.add_field(name="Unban", value=unban, inline=False)
             e.add_field(name="Kick", value=kick, inline=False)
-            e.add_field(name="Mute", value=mute, inline=False)
-            e.add_field(name="Unmute", value=unmute, inline=False)
+
         
         if i == 1:
             e.add_field(name="Warn", value=warn, inline=False)
             e.add_field(name="Warns", value = warns)
+            e.add_field(name="Autorole", value = autorole, inline = False)
+            e.add_field(name = "Role", value = role, inline = False)
+            e.add_field(name = "removerole (rr)", value = removerole, inline = False)
+            
             
         if i == 2:
             

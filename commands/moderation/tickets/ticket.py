@@ -52,8 +52,8 @@ class CreateTicketButtonView(discord.ui.View):
     @discord.ui.button(label="Create Ticket", style=discord.ButtonStyle.green, custom_id="create_ticket")
     
     async def callback(self, x, interaction: discord.Interaction):
-        self.category = discord.utils.get(interaction.guild.categories, id=num)
-        channel = await interaction.guild.create_text_channel(name=f"ticket-{interaction.user.name}", category = self.category)
+        category = discord.utils.get(interaction.guild.categories, id=num)
+        channel = await interaction.guild.create_text_channel(name=f"ticket-{interaction.user.name}", category = category)
         await channel.send(f"ticket created by {interaction.user.mention}")
         await channel.set_permissions(interaction.guild.default_role, read_messages=False)
         await channel.set_permissions(interaction.user, read_messages=True, send_messages=True)

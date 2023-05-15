@@ -11,9 +11,9 @@ from os          import getenv
 
 i = 0
 
-for str in ["commands.moderation.ban", 
-            "commands.moderation.unban",
-            "commands.moderation.kick",
+for str in ["commands.moderation.essential.ban", 
+            "commands.moderation.essential.unban",
+            "commands.moderation.essential.kick",
             "commands.misc.spam",
             "commands.util.avatar", 
             "commands.util.clear",
@@ -28,7 +28,10 @@ for str in ["commands.moderation.ban",
             "commands.moderation.tickets.remove",
             "commands.moderation.tickets.add",
             "commands.moderation.purge",
-            "commands.moderation.lock"]:
+            "commands.moderation.lock",
+            "commands.moderation.auto.autorole",
+            "commands.moderation.role",
+            "commands.moderation.nuke",]:
     
     
     i += 1
@@ -40,7 +43,7 @@ intent = discord.Intents.default()
 intent.members = True
 intent.message_content = True
 
-activity = discord.Activity(type=discord.ActivityType.watching, name="ry make this!")
+activity = discord.Activity(type=discord.ActivityType.watching, name="for $help")
 
 Cloud = commands.Bot(command_prefix='$', intents=intent, activity=activity)
 
@@ -64,7 +67,10 @@ for cog in [
     AddCog,
     RemoveCog,
     PurgeCog,
-    LockCog]:
+    LockCog,
+    AutoroleCog,
+    RoleCog,
+    NukeCog,]:
     
     Cloud.add_cog(cog(Cloud))
 
