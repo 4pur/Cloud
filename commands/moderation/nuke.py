@@ -5,7 +5,7 @@ class NukeCog(commands.Cog):
         self.bot = bot
         
     @commands.command(name="nuke", aliases=["destroy", "obliterate"])
-    @commands.has_permissions(administrator=True)
+    @commands.has_permissions(manage_messages=True)
     async def nuke(self, ctx):
         await ctx.send("Nuking channel...")
         await ctx.channel.clone()
