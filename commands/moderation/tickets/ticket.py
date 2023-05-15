@@ -21,16 +21,12 @@ class TicketEmbedModalCreator(discord.ui.Modal):
         self.custom_id = custom_id
         
         self.add_item(InputText(label="Title", placeholder="Enter a title", custom_id="title"))
-        self.add_item(InputText(label="Description", placeholder="Enter a description", custom_id="desc"))
-        self.add_item(InputText(label="Category ID", placeholder="Enter a category ID for tickets to be created in", custom_id="id"))
-    
+        self.add_item(InputText(label="Description", placeholder="Enter a description", custom_id="desc")) 
         
     async def callback(self, interaction: discord.Interaction):
         embed = discord.Embed(title = self.children[0].value)
         embed.add_field(name = "", value=self.children[1].value)
         
-        global num
-        num = self.children[2].value
         await interaction.channel.send(embed=embed, view = CreateTicketButtonView())
 
 class TicketEmbedView(discord.ui.View):
@@ -45,15 +41,14 @@ class TicketEmbedView(discord.ui.View):
         
         
 class CreateTicketButtonView(discord.ui.View):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, *, timeout = None):
+        super().__init__(timeout = timeout)
 
         
     @discord.ui.button(label="Create Ticket", style=discord.ButtonStyle.green, custom_id="create_ticket")
     
     async def callback(self, x, interaction: discord.Interaction):
-        category = discord.utils.get(interaction.guild.categories, id=num)
-        channel = await interaction.guild.create_text_channel(name=f"ticket-{interaction.user.name}", category = category)
+        channel = await interaction.guild.create_text_channel(name=f"ticket-{interaction.user.name}")
         await channel.send(f"ticket created by {interaction.user.mention}")
         await channel.set_permissions(interaction.guild.default_role, read_messages=False)
         await channel.set_permissions(interaction.user, read_messages=True, send_messages=True)
