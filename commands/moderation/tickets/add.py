@@ -6,7 +6,7 @@ class AddCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="add")
+    @commands.command(name="add", aliases = ["a"])
     @commands.has_permissions(manage_messages=True)
     async def add(self, ctx, member: discord.Member = None):
         if ctx.channel.name.startswith("ticket-") == False:

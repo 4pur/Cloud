@@ -21,7 +21,7 @@ unlock =    "Unlocks a channel."
 slowmode =  "Sets a channel's slowmode."
 nuke =      "Delete all messages from a channel."
 
-ticket =    "Creates an embed, with a button to create a ticket, usage: $embed, then click on the button & fill out the form"
+ticket =    "Creates an embed, with a button to create a ticket."
 close =     "Closes a ticket."
 add =       "Adds a user to a ticket."
 remove =    "Removes a user from a ticket."
@@ -30,17 +30,20 @@ autorole = "Gives users a role upon joining the server."
 role = "Gives a user a role."
 removerole = "Removes a role from a user, usage: $removerole <user> <role>"
 
-embed = "Creates a custom embed, usage: $embed, then click on the button & fill out the form"
+embed = "Creates a custom embed."
 
 class HelpCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
-    @commands.command(name="help", aliases=["a"])
+    @commands.command(name="help", aliases=["h"])
     async def help(self, ctx):
-        global ctx1 
-        ctx1 = ctx
-        await ctx.send(view=ButtonView())
+        e = discord.Embed(title="Help", color=0x00ff00, timestamp = datetime.datetime.now())
+
+        e.add_field(name="Ban", value=ban, inline=False)
+        e.add_field(name="Unban", value=unban, inline=False)
+        e.add_field(name="Kick", value=kick, inline=False)
+        await ctx.send(embed = e, view=ButtonView())
         
 
 class MiscView(discord.ui.View):
@@ -56,10 +59,10 @@ class ForwardButton(discord.ui.Button):
         self.label = label
         
     async def callback(self, interaction: discord.Interaction):
+        e = discord.Embed(title="Help", color=0x00ff00, timestamp = datetime.datetime.now())
+
         global i
         i += 1
-        
-        e = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00, timestamp = datetime.datetime.utcnow())
         
         if i > 3:
             i -= 1
@@ -105,7 +108,7 @@ class BackButton(discord.ui.Button):
         global i
         i -= 1
 
-        e = discord.Embed(title="Help", description="Moderation Commands", color=0x00ff00, timestamp = datetime.datetime.now())
+        e = discord.Embed(title="Help", color=0x00ff00, timestamp = datetime.datetime.now())
 
         if i < 0:
             i += 1
