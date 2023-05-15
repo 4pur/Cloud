@@ -10,4 +10,3 @@ class NukeCog(commands.Cog):
         await ctx.send("Nuking channel...")
         await ctx.channel.clone()
         await ctx.channel.delete()
-        await ctx.send("Channel nuked.")

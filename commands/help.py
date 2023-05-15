@@ -21,7 +21,7 @@ unlock =    "Unlocks a channel."
 slowmode =  "Sets a channel's slowmode."
 nuke =      "Delete all messages from a channel."
 
-ticket =    "Creates an embed, with a button to create a ticket, id is the category the tickets are created in."
+ticket =    "Creates an embed, with a button to create a ticket, usage: $embed, then click on the button & fill out the form"
 close =     "Closes a ticket."
 add =       "Adds a user to a ticket."
 remove =    "Removes a user from a ticket."
@@ -30,7 +30,7 @@ autorole = "Gives users a role upon joining the server."
 role = "Gives a user a role."
 removerole = "Removes a role from a user, usage: $removerole <user> <role>"
 
-embed = "Creates a custom embed. usage: $embed <title> <description>"
+embed = "Creates a custom embed, usage: $embed, then click on the button & fill out the form"
 
 class HelpCog(commands.Cog):
     def __init__(self, bot):
