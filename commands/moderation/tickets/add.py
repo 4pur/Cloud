@@ -9,8 +9,8 @@ class AddCog(commands.Cog):
     @commands.command(name="add")
     @commands.has_permissions(manage_messages=True)
     async def add(self, ctx, member: discord.Member = None):
-        if member == None:
-            await ctx.send("No member mentioned, try again.")
+        if ctx.channel.name.startswith("ticket-") == False:
+            await ctx.send("This is not a ticket channel.")
         else:
             await ctx.channel.set_permissions(member, read_messages=True, send_messages=True)
             await ctx.send("Member added to the ticket.")
