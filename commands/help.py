@@ -14,7 +14,6 @@ unmute =    "Unmutes a user."
 
 warn =      "Warns a user."
 warns =     "View a user's warnings"
-clearwarnings = "Clear a user's warnings."
 
 purge =     "Purges a certain amount of messages."
 lock =      "Locks a channel."
@@ -91,7 +90,6 @@ class ForwardButton(discord.ui.Button):
         if i == 1:
             e.add_field(name="Warn", value=warn, inline=False)
             e.add_field(name="Warns", value = warns)
-			e.add_field(name="Clearwarns (cw)", value = clearwarnings, inline = False)
             e.add_field(name="Autorole", value = autorole, inline = False)
             e.add_field(name = "Role", value = role, inline = False)
             e.add_field(name = "removerole (rr)", value = removerole, inline = False)
@@ -135,7 +133,6 @@ class BackButton(discord.ui.Button):
         if i == 1:
             e.add_field(name="Warn", value=warn, inline=False)
             e.add_field(name="Warns", value = warns)
-			e.add_field(name="Clearwarns (cw)", value = clearwarnings, inline = False)
             e.add_field(name="Autorole", value = autorole, inline = False)
             e.add_field(name = "Role", value = role, inline = False)
             e.add_field(name = "removerole (rr)", value = removerole, inline = False)
