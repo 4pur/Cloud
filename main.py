@@ -90,5 +90,6 @@ for cog in [
 # handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 # logger.addHandler(handler)
 
-load_dotenv(); TOKEN = getenv("TOKEN")
-Cloud.run(TOKEN)
+load_dotenv(); TOKEN = getenv("TOKEN
+def main():
+            Cloud.run(TOKEN)
