@@ -15,5 +15,4 @@ class AutoroleCog(commands.Cog):
     @commands.Cog.listener()
     async def on_member_join(self, member):
         with open(f'roles/{member.guild.id}.csv', 'r') as r:
-            role = discord.utils.get(member.guild.roles, id=int(r.read()))
-            await member.add_roles(role)
+            await member.add_roles(discord.utils.get(member.guild.roles, id=int(r.read())))
