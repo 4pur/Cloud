@@ -12,17 +12,13 @@ class PlayCog(commands.Cog):
 
     @commands.command(name='play')
     async def play(self, ctx, *, url):
-        try :
             server = ctx.message.guild
             voice_channel = server.voice_client
 
             async with ctx.typing():
-                filename = await YTDLSource.from_url(url, loop=bot.loop)
+                filename = await YTDLSource.from_url(url, loop=self.bot.loop)
                 voice_channel.play(discord.FFmpegPCMAudio(executable="ffmpeg", source=filename))
             await ctx.send('**Now playing:** {}'.format(filename))
-        except:
-            await ctx.send("The bot is not connected to a voice channel.")
-
 
     @commands.command(name='pause')
     async def pause(self, ctx):
