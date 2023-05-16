@@ -4,7 +4,7 @@ import youtube_dl
 
 from dotenv import load_dotenv
 from discord.ext import commands,tasks
-from util.ytdl import YTDLSource
+from commands.util.ytdl import YTDLSource
 
 class PlayCog(commands.Cog):
     def __init__(self, bot):
@@ -18,7 +18,7 @@ class PlayCog(commands.Cog):
 
             async with ctx.typing():
                 filename = await YTDLSource.from_url(url, loop=bot.loop)
-                voice_channel.play(discord.FFmpegPCMAudio(executable="ffmpeg.exe", source=filename))
+                voice_channel.play(discord.FFmpegPCMAudio(executable="ffmpeg", source=filename))
             await ctx.send('**Now playing:** {}'.format(filename))
         except:
             await ctx.send("The bot is not connected to a voice channel.")
