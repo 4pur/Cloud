@@ -32,7 +32,9 @@ for str in ["commands.moderation.essential.ban",
             "commands.moderation.auto.autorole",
             "commands.moderation.role",
             "commands.moderation.nuke",
-            "commands.util.embed",]:
+            "commands.util.embed",
+            "commands.music.join",
+            "commands.music.play"]:
     
     
     i += 1
@@ -72,7 +74,10 @@ for cog in [
     AutoroleCog,
     RoleCog,
     NukeCog,
-    EmbedCog,]:
+    EmbedCog,
+    JoinCog,
+    PlayCog,
+    ]:
     
     Cloud.add_cog(cog(Cloud))
 
