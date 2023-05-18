@@ -91,4 +91,5 @@ for cog in [
 # logger.addHandler(handler)
 
 load_dotenv(); TOKEN = getenv("TOKEN")
-Cloud.run(TOKEN)
+def main():
+            Cloud.run(TOKEN)
