@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands,tasks
 import os
 from dotenv import load_dotenv
-import youtube_dl
+import yt_dlp as youtube_dl
 
 youtube_dl.utils.bug_reports_message = lambda: ''
 

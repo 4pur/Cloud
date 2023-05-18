@@ -12,13 +12,13 @@ class PlayCog(commands.Cog):
 
     @commands.command(name='play')
     async def play(self, ctx, *, url):
-            server = ctx.message.guild
-            voice_channel = server.voice_client
+        server = ctx.message.guild
+        voice_channel = server.voice_client
 
-            async with ctx.typing():
-                filename = await YTDLSource.from_url(url, loop=self.bot.loop)
-                voice_channel.play(discord.FFmpegPCMAudio(executable="ffmpeg", source=filename))
-            await ctx.send('**Now playing:** {}'.format(filename))
+        async with ctx.typing():
+            filename = await YTDLSource.from_url(url, loop=self.bot.loop)
+            voice_channel.play(discord.FFmpegPCMAudio(executable="commands/music/ff", source=filename))
+        await ctx.send('**Now playing:** {}'.format(filename))
 
     @commands.command(name='pause')
     async def pause(self, ctx):
