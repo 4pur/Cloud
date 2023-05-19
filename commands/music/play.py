@@ -34,6 +34,19 @@ class PlayCog(commands.Cog):
             voice_channel.play(discord.FFmpegPCMAudio(executable="util/ffmpeg", source=filename))
         await ctx.send('**Now playing:** {}'.format(filename))
 
+    @commands.command(name = 'volume')
+    async def volume(self, ctx, vol: int):
+        # wip
+        
+        server = ctx.message.guild
+        voice, voice.source = server.voice_client
+        if 0 <= vol <= 100:
+            vol = vol / 100
+            voice.source.volume = vol
+            ctx.send("Volume changed to {}%.".format(str(vol)))
+        else:
+            await ctx.send('Please enter a volume between 0 and 100')
+
     @commands.command(name='pause')
     async def pause(self, ctx):
         voice_client = ctx.message.guild.voice_client

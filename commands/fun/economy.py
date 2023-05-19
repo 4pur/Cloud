@@ -11,14 +11,17 @@ class EconomyCog(commands.Cog):
     async def balance(self, ctx, user: commands.UserConverter = None):
         if user == None:
             print(ctx.author.id)
-            await self.makeFiles(identifier = ctx.author.id)
-            with open(f"economy/{ctx.author.id}/coins.txt", "r") as f:
-                coins = f.read()
-        else:
+            a = ctx.author.id
+            #await self.makeFiles(identifier = ctx.author.id)
+            #with open(f"economy/{ctx.author.id}/coins.txt", "r") as f:
+                #coins = f.read()
+        if user != None:
             print(user.id)
-            await self.makeFiles(identifier = user.id)
-            with open(f"economy/{user.id}/coins.txt", "r") as f:
-                coins = f.read()
+            a = user.id
+            #await self.makeFiles(identifier = user.id)
+            #with open(f"economy/{user.id}/coins.txt", "r") as f:
+                #coins = f.read()
+        await self.makeFiles(identifier = a)
 
         if user == None:
             if int(coins) > 1:

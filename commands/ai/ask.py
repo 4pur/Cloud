@@ -36,4 +36,5 @@ class AskCog(commands.Cog):
             responses.append(response_text)
             
         for response in responses:
-            await ctx.send(response)
+            async with ctx.typing():
+                await ctx.send(response)
