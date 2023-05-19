@@ -34,7 +34,10 @@ for str in ["commands.moderation.essential.ban",
             "commands.moderation.nuke",
             "commands.util.embed",
             "commands.music.join",
-            "commands.music.play"]:
+            "commands.music.play",
+            "commands.fun.eightball",
+            "commands.fun.economy",
+            ]:
     
     
     i += 1
@@ -46,7 +49,7 @@ intent = discord.Intents.default()
 intent.members = True
 intent.message_content = True
 
-activity = discord.Activity(type=discord.ActivityType.watching, name="for $help")
+activity = discord.Activity(type=discord.ActivityType.watching, name="callie make this")
 
 Cloud = commands.Bot(command_prefix='$', intents=intent, activity=activity)
 
@@ -77,6 +80,8 @@ for cog in [
     EmbedCog,
     JoinCog,
     PlayCog,
+    EightballCog,
+    EconomyCog,
     ]:
     
     Cloud.add_cog(cog(Cloud))

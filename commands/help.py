@@ -32,6 +32,14 @@ removerole = "Removes a role from a user, usage: $removerole <user> <role>"
 
 embed = "Creates a custom embed."
 
+play = "Plays a song, usage: $play <song name>"
+join = "Joins a voice channel."
+stop = "Stops the music."
+pause = "Pauses the music."
+resume = "Resumes the music."
+leave = "Leaves the voice channel."
+
+eightball = "Ask the magic 8ball a question."
 class HelpCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -64,7 +72,7 @@ class ForwardButton(discord.ui.Button):
         global i
         i += 1
         
-        if i > 3:
+        if i > 4:
             i -= 1
         
         if i == 0:
@@ -94,7 +102,15 @@ class ForwardButton(discord.ui.Button):
             e.add_field(name="Remove", value = remove, inline = False)
             
         if i == 4:
-            e.add_field(name="Embed", value = embed, inline = False)
+            e.add_field(name="Play", value = play, inline = False)
+            e.add_field(name="Join", value = join, inline = False)
+            e.add_field(name="Stop", value = stop, inline = False)
+            e.add_field(name="Pause", value = pause, inline = False)
+            e.add_field(name="Resume", value = resume, inline = False)
+            e.add_field(name="Leave", value = leave, inline = False)
+
+        if i == 5:
+            e.add_field(name="8ball", value = eightball, inline = False)
             
         await interaction.response.edit_message(embed = e, view = ButtonView())
 
@@ -142,7 +158,15 @@ class BackButton(discord.ui.Button):
             e.add_field(name="Remove", value = remove, inline = False)
             
         if i == 4:
-            e.add_field(name="Embed", value = embed, inline = False)
+            e.add_field(name="Play", value = play, inline = False)
+            e.add_field(name="Join", value = join, inline = False)
+            e.add_field(name="Stop", value = stop, inline = False)
+            e.add_field(name="Pause", value = pause, inline = False)
+            e.add_field(name="Resume", value = resume, inline = False)
+            e.add_field(name="Leave", value = leave, inline = False)
+            
+        if i == 5:
+            e.add_field(name="8ball", value = eightball, inline = False)
         
         await interaction.response.edit_message(embed = e, view = ButtonView())
         

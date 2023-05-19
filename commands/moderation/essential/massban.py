@@ -10,6 +10,8 @@ class MassbanCog(commands.Cog):
     async def ban(self, ctx, m: discord.Member = None, *, r: str):
         if m == None:
             ctx.send("You did not provide a user to ban.")
+        elif m.len() > 10:
+            ctx.send("You cannot ban more than 10 members at once.")
         else:
             await m.ban(reason = r)
             await ctx.send(f"Banned {m} for {r}")
