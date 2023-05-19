@@ -15,7 +15,7 @@ class JoinCog(commands.Cog):
             channel = ctx.message.author.voice.channel
         await channel.connect()
 
-    @commands.command(name = "leave")
+    @commands.command(name = "leave", aliases = ["dc", "fuckoff"])
     async def Leave(self, ctx):
         voice_client = ctx.message.guild.voice_client
         if voice_client.is_connected():

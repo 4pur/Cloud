@@ -10,14 +10,13 @@ class EconomyCog(commands.Cog):
     @commands.command(name = "balance", aliases = ["bal"])
     async def balance(self, ctx, user: commands.UserConverter = None):
         if user == None:
-            a = ctx.author
+            with open(f"economy/{ctx.author.id}/coins.txt", "r") as f:
+                coins = f.read()
+            await self.make_account(ctx = ctx, user = None)
         else:
-            a = user
-            
-        await self.make_account(user = a)
-        
-        with open(f"economy/{a.id}/coins.txt", "r") as f:
-            coins = f.read()
+            with open(f"economy/{user.id}/coins.txt", "r") as f:
+                coins = f.read()
+            await self.make_account(ctx = None, user = user)
         
         if user == None:
             if int(coins) > 1:
@@ -26,9 +25,9 @@ class EconomyCog(commands.Cog):
                 await ctx.send(f"You have {coins} coin.")
         else:
             if int(coins) > 1:
-                await ctx.send(f"{user.name} has {coins} coins.")
+                await ctx.send(f"{user.id} has {coins} coins.")
             if int(coins) == 1:
-                await ctx.send(f"{user.name} has {coins} coin.")
+                await ctx.send(f"{user.id} has {coins} coin.")
         
         
     @commands.command(name = "beg")
@@ -74,10 +73,6 @@ class EconomyCog(commands.Cog):
         
         await ctx.send(f"You begged and got {rnd} coins.")
         
-    
-        with open(f"economy/{ctx.author.id}/coins.txt", "r+") as f:
-            coins = f.read()
-            f.close()
         
     @commands.command(name = "pay")
     async def pay(self, ctx, user: commands.UserConverter, amount: int):
@@ -94,11 +89,11 @@ class EconomyCog(commands.Cog):
         with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
             f.write(str(int(coins) - amount))
         
-        with open(f"economy/{user.id}/coins.txt", "r+") as f:
+        with open(f"economy/{user}/coins.txt", "r+") as f:
             coins = f.read()
             f.close()
         
-        with open(f"economy/{user.id}/coins.txt", "w") as f:
+        with open(f"economy/{user}/coins.txt", "w") as f:
             f.write(str(int(coins) + amount))
         
         await ctx.send(f"You gave {user.mention} {amount} coins.")
@@ -125,7 +120,85 @@ class EconomyCog(commands.Cog):
             with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
                 f.write(str(int(coins) + amount))
             await ctx.send(f"You won {amount} coins.")
+
+    @commands.command(name = "work")
+    async def work(self, ctx):
+        await self.make_account(ctx = ctx, user = None)
+
+        with open(f"economy/{ctx.author.id}/last_work.txt", "r+") as f:
+            last_work = f.read()
+            f.close()
+            
+        if last_work != "":
+            if int(last_work) + 14400 > int(ctx.message.created_at.timestamp()):
+                await ctx.send("You have to wait four hours before working again.")
+                return
         
+        with open(f"economy/{ctx.author.id}/last_work.txt", "w") as f:
+            f.write(str(int(ctx.message.created_at.timestamp())))
+
+        with open(f"economy/{ctx.author.id}/coins.txt", "r+") as f:
+            coins = f.read()
+            f.close()
+        
+        rnd = random.randint(10, 300)
+
+        if rnd < 30:
+            await ctx.send("You were mugged on the way home for 30 coins")
+            with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
+                f.write(str(int(coins) - 30))
+
+        
+        if rnd > 270:
+            await ctx.send("You were robbed on the way home for 200 coins")
+            with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
+                f.write(str(int(coins) - 200))
+            return
+        
+        with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
+            f.write(str(int(coins) + rnd))
+        
+        await ctx.send(f"You worked for {rnd} coins.")
+
+    @commands.command(name = "rob")
+    async def rob(self, ctx = None, user: commands.UserConverter = None):
+        await self.make_account(ctx = ctx, user = user)
+        
+        with open(f"economy/{ctx.author.id}/last_rob.txt", "r+") as f:
+            last_rob = f.read()
+            f.close()
+            
+        if last_rob != "":
+            if int(last_rob) + 1800 > int(ctx.message.created_at.timestamp()):
+                await ctx.send("You have to wait 30 minutes before robbing someone again.")
+                return
+        
+        with open(f"economy/{ctx.author.id}/last_rob.txt", "w") as f:
+            f.write(str(int(ctx.message.created_at.timestamp())))
+
+        with open(f"economy/{ctx.author.id}/coins.txt", "r+") as f:
+            coins = f.read()
+            f.close()
+        
+        rnd = random.randint(1, 4)
+        rnd2 = random.randint(20, 100)
+
+        if rnd == 4:
+            await ctx.send(f"You robbed {user} for {rnd2} coins.")
+
+        if rnd < 4:
+            await ctx.send(f"You were caught and fined {rnd2} coins.")
+            return
+        
+        if rnd == 4:
+            with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
+                f.write(str(int(coins) + rnd2))
+
+            with open(f"economy/{user}/coins.txt", "w") as f:
+                f.write(str(int(coins) - rnd2))
+        elif rnd < 4:
+            with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
+                f.write(str(int(coins) + rnd2))
     async def make_account(self, ctx = None, user: commands.UserConverter = None):
         if ctx == None:
             pass
@@ -140,17 +213,33 @@ class EconomyCog(commands.Cog):
             if os.path.exists(f"economy/{ctx.author.id}/last_beg.txt") == False:
                 with open(f"economy/{ctx.author.id}/last_beg.txt", "w") as f:
                     f.write("0")
+
+            if os.path.exists(f"economy/{ctx.author.id}/last_work.txt") == False:
+                with open(f"economy/{ctx.author.id}/last_work.txt", "w") as f:
+                    f.write("0")
+
+            if os.path.exists(f"economy/{ctx.author.id}/last_rob.txt") == False:
+                with open(f"economy/{ctx.author.id}/last_rob.txt", "w") as f:
+                    f.write("0")
                     
         if user == None:
             pass
         else:
-            if os.path.exists(f"economy/{user.id}") == False:
-                os.mkdir(f"economy/{user.id}")
+            if os.path.exists(f"economy/{user}") == False:
+                os.mkdir(f"economy/{user}")
                 
-            if os.path.exists(f"economy/{user.id}/coins.txt") == False:
-                with open(f"economy/{user.id}/coins.txt", "w") as f:
+            if os.path.exists(f"economy/{user}/coins.txt") == False:
+                with open(f"economy/{user}/coins.txt", "w") as f:
                     f.write("0")
                     
-            if os.path.exists(f"economy/{user.id}/last_beg.txt") == False:
-                with open(f"economy/{user.id}/last_beg.txt", "w") as f:
+            if os.path.exists(f"economy/{user}/last_beg.txt") == False:
+                with open(f"economy/{user}/last_beg.txt", "w") as f:
+                    f.write("0")
+
+            if os.path.exists(f"economy/{user}/last_work.txt") == False:
+                with open(f"economy/{user}/last_work.txt", "w") as f:
+                    f.write("0")
+
+            if os.path.exists(f"economy/{user}/last_rob.txt") == False:
+                with open(f"economy/{user}/last_rob.txt", "w") as f:
                     f.write("0")
