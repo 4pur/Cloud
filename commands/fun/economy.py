@@ -10,14 +10,16 @@ class EconomyCog(commands.Cog):
     @commands.command(name = "balance", aliases = ["bal"])
     async def balance(self, ctx, user: commands.UserConverter = None):
         if user == None:
+            print(ctx.author.id)
+            await self.makeFiles(identifier = ctx.author.id)
             with open(f"economy/{ctx.author.id}/coins.txt", "r") as f:
                 coins = f.read()
-            await self.make_account(ctx = ctx, user = None)
         else:
+            print(user.id)
+            await self.makeFiles(identifier = user.id)
             with open(f"economy/{user.id}/coins.txt", "r") as f:
                 coins = f.read()
-            await self.make_account(ctx = None, user = user)
-        
+
         if user == None:
             if int(coins) > 1:
                 await ctx.send(f"You have {coins} coins.")
@@ -199,47 +201,27 @@ class EconomyCog(commands.Cog):
         elif rnd < 4:
             with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
                 f.write(str(int(coins) + rnd2))
-    async def make_account(self, ctx = None, user: commands.UserConverter = None):
-        if ctx == None:
-            pass
+    async def make_account(self, ctx, user: commands.UserConverter):
+        if ctx == None: 
+            userId = user.id
+        else: 
+            userId = ctx.author.id
+        await self.makeFiles(userId)
+
+    async def makeFiles(identifier):
+        files = ["coins", "last_beg", "last_work", "last_rob"]
+       
+
+            
+        if os.path.exists("economy") == False:
+            os.mkdir("economy")
         else:
-            if os.path.exists(f"economy/{ctx.author.id}") == False:
-                os.mkdir(f"economy/{ctx.author.id}")
-                
-            if os.path.exists(f"economy/{ctx.author.id}/coins.txt") == False:
-                with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
-                    f.write("0")
-                    
-            if os.path.exists(f"economy/{ctx.author.id}/last_beg.txt") == False:
-                with open(f"economy/{ctx.author.id}/last_beg.txt", "w") as f:
-                    f.write("0")
-
-            if os.path.exists(f"economy/{ctx.author.id}/last_work.txt") == False:
-                with open(f"economy/{ctx.author.id}/last_work.txt", "w") as f:
-                    f.write("0")
-
-            if os.path.exists(f"economy/{ctx.author.id}/last_rob.txt") == False:
-                with open(f"economy/{ctx.author.id}/last_rob.txt", "w") as f:
-                    f.write("0")
-                    
-        if user == None:
-            pass
-        else:
-            if os.path.exists(f"economy/{user}") == False:
-                os.mkdir(f"economy/{user}")
-                
-            if os.path.exists(f"economy/{user}/coins.txt") == False:
-                with open(f"economy/{user}/coins.txt", "w") as f:
-                    f.write("0")
-                    
-            if os.path.exists(f"economy/{user}/last_beg.txt") == False:
-                with open(f"economy/{user}/last_beg.txt", "w") as f:
-                    f.write("0")
-
-            if os.path.exists(f"economy/{user}/last_work.txt") == False:
-                with open(f"economy/{user}/last_work.txt", "w") as f:
-                    f.write("0")
-
-            if os.path.exists(f"economy/{user}/last_rob.txt") == False:
-                with open(f"economy/{user}/last_rob.txt", "w") as f:
-                    f.write("0")
+            if os.path.exists(f"economy/{identifier}") == False:
+                os.mkdir(f"economy/{identifier}")
+            else:
+                for str in files:
+                    if os.path.isfile(f"economy/{identifier}/{str}.txt") == False:
+                        with open(f"economy/{identifier}/{str}.txt", "w") as x:
+                            x.write("0")
+                    else:
+                        print("")
