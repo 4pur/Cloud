@@ -211,7 +211,7 @@ class EconomyCog(commands.Cog):
             userId = ctx.author.id
         await self.makeFiles(userId)
 
-    async def makeFiles(identifier):
+    async def makeFiles(identifier: int = None):
         files = ["coins", "last_beg", "last_work", "last_rob"]
        
 
