@@ -227,4 +227,4 @@ class EconomyCog(commands.Cog):
                         with open(f"economy/{identifier}/{str}.txt", "w") as x:
                             x.write("0")
                     else:
-                        print("")
+                        return
