@@ -33,10 +33,12 @@ for str in ["commands.moderation.essential.ban",
             "commands.moderation.role",
             "commands.moderation.nuke",
             "commands.util.embed",
+            "commands.util.ping",
             "commands.music.join",
             "commands.music.play",
             "commands.fun.eightball",
             "commands.fun.economy",
+            "commands.util.invite",
             ]:
     
     
@@ -82,6 +84,8 @@ for cog in [
     PlayCog,
     EightballCog,
     EconomyCog,
+    PingCog,
+    InviteCog,
     ]:
     
     Cloud.add_cog(cog(Cloud))
