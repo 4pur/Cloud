@@ -9,17 +9,17 @@ class EconomyCog(commands.Cog):
         
     @commands.command(name = "balance", aliases = ["bal"])
     async def balance(self, ctx, user: commands.UserConverter = None):
-        if user is None:
+        if user == None:
             identifier = int(ctx.author.id)
                 
-        if user is not None:   
+        if user != None:   
             identifier = user.id
 
-        if os.path.exists("economy") is False:
+        if os.path.exists("economy") == False:
             os.mkdir("economy")
             pass
         else:
-            if os.path.exists(f"economy/{identifier}") is False:
+            if os.path.exists(f"economy/{identifier}") == False:
                 os.mkdir(f"economy/{identifier}")
                 pass
             else:
@@ -27,7 +27,7 @@ class EconomyCog(commands.Cog):
                     with open(f"economy/{identifier}/coins.txt", "w") as x:
                         x.write("0")
                 else:
-                    return
+                    pass
                     
         with open(f"economy/{identifier}/coins.txt", "r") as f:
             coins = f.read()
@@ -37,26 +37,26 @@ class EconomyCog(commands.Cog):
                 await ctx.send(f"You have {coins} coins.")
             if int(coins) < 1:
                 await ctx.send("You have no coins.")
-            if int(coins) is 1:
+            if int(coins) == 1:
                 await ctx.send(f"You have {coins} coin.")
         else:
             if int(coins) > 1:
-                await ctx.send(f"{user.id} has {coins} coins.")
+                await ctx.send(f"{user.name} has {coins} coins.")
             if int(coins) < 1:
-                await ctx.send(f"{user.id} has no coins.")
-            if int(coins) is 1:
-                await ctx.send(f"{user.id} has {coins} coin.")
+                await ctx.send(f"{user.name} has no coins.")
+            if int(coins) == 1:
+                await ctx.send(f"{user.name} has {coins} coin.")
         
         
     @commands.command(name = "beg")
     async def beg(self, ctx):
         identifier = int(ctx.author.id)
         
-        if os.path.exists("economy") is False:
+        if os.path.exists("economy") == False:
             os.mkdir("economy")
             pass
         else:
-            if os.path.exists(f"economy/{identifier}") is False:
+            if os.path.exists(f"economy/{identifier}") == False:
                 os.mkdir(f"economy/{identifier}")
                 pass
             else:
@@ -67,7 +67,7 @@ class EconomyCog(commands.Cog):
                     with open(f"economy/{identifier}/coins.txt", "w") as x:
                         x.write("0")
                 else:
-                    return
+                    pass
                     
         with open(f"economy/{identifier}/coins.txt", "r") as f:
             coins = f.read()
@@ -76,7 +76,7 @@ class EconomyCog(commands.Cog):
             last_beg = f.read()
             f.close()
             
-        if last_beg is not "":
+        if last_beg != "":
             if int(last_beg) + 3600 > int(ctx.message.created_at.timestamp()):
                 await ctx.send("You have to wait an hour before begging again.")
                 return
@@ -110,21 +110,19 @@ class EconomyCog(commands.Cog):
             f.write(str(int(coins) + rnd))
         
         await ctx.send(f"You begged and got {rnd} coins.")
-        
-        
     @commands.command(name = "pay")
     async def pay(self, ctx, user: commands.UserConverter, amount: int):
         if user is None:
             identifier = int(ctx.author.id)
                 
-        if user is not None:   
+        if user != None:   
             identifier = user.id
             
-        if os.path.exists("economy") is False:
+        if os.path.exists("economy") == False:
             os.mkdir("economy")
             pass
         else:
-            if os.path.exists(f"economy/{identifier}") is False:
+            if os.path.exists(f"economy/{identifier}") == False:
                 os.mkdir(f"economy/{identifier}")
                 pass
             else:
@@ -132,7 +130,7 @@ class EconomyCog(commands.Cog):
                     with open(f"economy/{identifier}/coins.txt", "w") as x:
                         x.write("0")
                 else:
-                    return
+                    pass
         
         with open(f"economy/{ctx.author.id}/coins.txt", "r+") as f:
             coins = f.read()
@@ -145,11 +143,11 @@ class EconomyCog(commands.Cog):
         with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
             f.write(str(int(coins) - amount))
         
-        with open(f"economy/{user}/coins.txt", "r+") as f:
+        with open(f"economy/{identifier}/coins.txt", "r+") as f:
             coins = f.read()
             f.close()
         
-        with open(f"economy/{user}/coins.txt", "w") as f:
+        with open(f"economy/{identifier}/coins.txt", "w") as f:
             f.write(str(int(coins) + amount))
         
         await ctx.send(f"You gave {user.mention} {amount} coins.")
@@ -158,11 +156,11 @@ class EconomyCog(commands.Cog):
     async def coinflip(self, ctx, amount: int):
         identifier = int(ctx.author.id)
         
-        if os.path.exists("economy") is False:
+        if os.path.exists("economy") == False:
             os.mkdir("economy")
             pass
         else:
-            if os.path.exists(f"economy/{identifier}") is False:
+            if os.path.exists(f"economy/{identifier}") == False:
                 os.mkdir(f"economy/{identifier}")
                 pass
             else:
@@ -170,7 +168,7 @@ class EconomyCog(commands.Cog):
                     with open(f"economy/{identifier}/coins.txt", "w") as x:
                         x.write("0")
                 else:
-                    return
+                    pass
         
         with open(f"economy/{ctx.author.id}/coins.txt", "r+") as f:
             coins = f.read()
@@ -182,7 +180,7 @@ class EconomyCog(commands.Cog):
         
         rnd = random.randint(1, 2)
         
-        if rnd is 1:
+        if rnd == 1:
             with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
                 f.write(str(int(coins) - amount))
             await ctx.send(f"You lost {amount} coins.")
@@ -195,28 +193,28 @@ class EconomyCog(commands.Cog):
     async def work(self, ctx):
         identifier = int(ctx.author.id)
         
-        if os.path.exists("economy") is False:
+        if os.path.exists("economy") == False:
             os.mkdir("economy")
             pass
         else:
-            if os.path.exists(f"economy/{identifier}") is False:
+            if os.path.exists(f"economy/{identifier}") == False:
                 os.mkdir(f"economy/{identifier}")
                 pass
             else:
                 if os.path.isfile(f"economy/{identifier}/last_work.txt") is False:
-                    with open(f"economy/{identifier}/last_beg.txt", "w") as x:
+                    with open(f"economy/{identifier}/last_work.txt", "w") as x:
                         x.write("0")
                 elif os.path.isfile(f"economy/{identifier}/coins.txt") is False:
                     with open(f"economy/{identifier}/coins.txt", "w") as x:
                         x.write("0")
                 else:
-                    return
+                    pass
 
         with open(f"economy/{ctx.author.id}/last_work.txt", "r+") as f:
             last_work = f.read()
             f.close()
             
-        if last_work is not "":
+        if last_work != "":
             if int(last_work) + 14400 > int(ctx.message.created_at.timestamp()):
                 await ctx.send("You have to wait four hours before working again.")
                 return
@@ -252,16 +250,14 @@ class EconomyCog(commands.Cog):
         if user is None:
             identifier = int(ctx.author.id)
                 
-        if user is not None:   
+        if user != None:   
             identifier = user.id
-            
-        files = ["coins", "last_beg", "last_work", "last_rob"]
-       
-        if os.path.exists("economy") is False:
+
+        if os.path.exists("economy") == False:
             os.mkdir("economy")
             pass
         else:
-            if os.path.exists(f"economy/{identifier}") is False:
+            if os.path.exists(f"economy/{identifier}") == False:
                 os.mkdir(f"economy/{identifier}")
                 pass
             else:
@@ -272,13 +268,13 @@ class EconomyCog(commands.Cog):
                     with open(f"economy/{identifier}/last_rob.txt", "w") as x:
                         x.write("0")
                 else:
-                    return
+                    pass
         
         with open(f"economy/{ctx.author.id}/last_rob.txt", "r+") as f:
             last_rob = f.read()
             f.close()
             
-        if last_rob is not "":
+        if last_rob != "":
             if int(last_rob) + 1800 > int(ctx.message.created_at.timestamp()):
                 await ctx.send("You have to wait 30 minutes before robbing someone again.")
                 return
@@ -293,18 +289,18 @@ class EconomyCog(commands.Cog):
         rnd = random.randint(1, 4)
         rnd2 = random.randint(20, 100)
 
-        if rnd is 4:
-            await ctx.send(f"You robbed {user} for {rnd2} coins.")
+        if rnd == 4:
+            await ctx.send(f"You robbed {identifier} for {rnd2} coins.")
 
         if rnd < 4:
             await ctx.send(f"You were caught and fined {rnd2} coins.")
             return
         
-        if rnd is 4:
+        if rnd == 4:
             with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
                 f.write(str(int(coins) + rnd2))
 
-            with open(f"economy/{user}/coins.txt", "w") as f:
+            with open(f"economy/{identifier}/coins.txt", "w") as f:
                 f.write(str(int(coins) - rnd2))
         elif rnd < 4:
             with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
