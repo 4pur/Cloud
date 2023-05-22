@@ -305,3 +305,86 @@ class EconomyCog(commands.Cog):
         elif rnd < 4:
             with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
                 f.write(str(int(coins) + rnd2))
+
+    @commands.command(name = "slots")
+    async def slots(self, ctx, amount: int):
+        identifier = int(ctx.author.id)
+        
+        if os.path.exists("economy") == False:
+            os.mkdir("economy")
+            pass
+        else:
+            if os.path.exists(f"economy/{identifier}") == False:
+                os.mkdir(f"economy/{identifier}")
+                pass
+            else:
+                if os.path.isfile(f"economy/{identifier}/coins.txt") is False:
+                    with open(f"economy/{identifier}/coins.txt", "w") as x:
+                        x.write("0")
+                else:
+                    pass
+        
+        with open(f"economy/{ctx.author.id}/coins.txt", "r+") as f:
+            coins = f.read()
+            f.close()
+        
+        if int(coins) < amount:
+            await ctx.send("You do not have enough coins.")
+            return
+        
+        rnd1 = random.randint(1, 9)
+        rnd2 = random.randint(1, 9)
+        rnd3 = random.randint(1, 9)
+        
+        if rnd1 == rnd2 == rnd3:
+            with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
+                f.write(str(int(coins) + amount * 2))
+            await ctx.send(f"{rnd1} | {rnd2} | {rnd3}\nYou won {amount * 2} coins.")
+        else:
+            with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
+                f.write(str(int(coins) - amount))
+            await ctx.send(f"{rnd1} | {rnd2} | {rnd3}\nYou lost {amount} coins.")
+            
+    @commands.command(name = "daily")
+    async def daily(self, ctx):
+        identifier = int(ctx.author.id)
+        
+        if os.path.exists("economy") == False:
+            os.mkdir("economy")
+            pass
+        else:
+            if os.path.exists(f"economy/{identifier}") == False:
+                os.mkdir(f"economy/{identifier}")
+                pass
+            else:
+                if os.path.isfile(f"economy/{identifier}/coins.txt") is False:
+                    with open(f"economy/{identifier}/coins.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
+                    with open(f"economy/{identifier}/last_daily.txt", "w") as x:
+                        x.write("0")
+                else:
+                    pass
+
+        with open(f"economy/{ctx.author.id}/last_daily.txt", "r+") as f:
+            last_daily = f.read()
+            f.close()
+            
+        if last_daily != "":
+            if int(last_daily) + 86400 > int(ctx.message.created_at.timestamp()):
+                await ctx.send("You have to wait a day before claiming your daily coins again.")
+                return
+        
+        with open(f"economy/{ctx.author.id}/last_daily.txt", "w") as f:
+            f.write(str(int(ctx.message.created_at.timestamp())))
+
+        with open(f"economy/{ctx.author.id}/coins.txt", "r+") as f:
+            coins = f.read()
+            f.close()
+        
+        rnd = random.randint(10, 100)
+
+        with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
+            f.write(str(int(coins) + rnd))
+        
+        await ctx.send(f"You claimed your daily coins. You got {rnd} coins.")
