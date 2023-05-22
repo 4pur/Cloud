@@ -1,3 +1,5 @@
+# REWRITE SOON
+
 import datetime
 import discord
 

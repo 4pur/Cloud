@@ -110,7 +110,7 @@ class EconomyCog(commands.Cog):
             f.write(str(int(coins) + rnd))
         
         await ctx.send(f"You begged and got {rnd} coins.")
-    @commands.command(name = "pay")
+    @commands.command(name = "pay", aliases = ["give"])
     async def pay(self, ctx, user: commands.UserConverter, amount: int):
         if user is None:
             identifier = int(ctx.author.id)
@@ -247,9 +247,9 @@ class EconomyCog(commands.Cog):
 
     @commands.command(name = "rob")
     async def rob(self, ctx = None, user: commands.UserConverter = None):
-        if user is None:
-            identifier = int(ctx.author.id)
-                
+        if user == None:
+            await ctx.send("You didn't specify anyone to rob!")
+            return
         if user != None:   
             identifier = user.id
 
@@ -300,7 +300,7 @@ class EconomyCog(commands.Cog):
             with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
                 f.write(str(int(coins) + rnd2))
 
-            with open(f"economy/{identifier}/coins.txt", "w") as f:
+            with open(f"economy/{user.id}/coins.txt", "w") as f:
                 f.write(str(int(coins) - rnd2))
         elif rnd < 4:
             with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
