@@ -1,3 +1,4 @@
+import discord
 import random
 import os
 
@@ -290,7 +291,7 @@ class EconomyCog(commands.Cog):
         rnd2 = random.randint(20, 100)
 
         if rnd == 4:
-            await ctx.send(f"You robbed {identifier} for {rnd2} coins.")
+            await ctx.send(f"You robbed {user.name} for {rnd2} coins.")
 
         if rnd < 4:
             await ctx.send(f"You were caught and fined {rnd2} coins.")
@@ -388,3 +389,136 @@ class EconomyCog(commands.Cog):
             f.write(str(int(coins) + rnd))
         
         await ctx.send(f"You claimed your daily coins. You got {rnd} coins.")
+        
+    @commands.command(name = "leaderboard")
+    async def leaderboard(self, ctx):
+        embed = discord.Embed(title = "Leaderboard", description = "Top 10 users with the most coins.", color = 0x00ff00)
+        embed.set_thumbnail(url = "https://cdn.discordapp.com/attachments/750458012618426133/750458035738474802/coin.png")
+        
+        for filename in os.listdir("economy"):
+            with open(f"economy/{filename}/coins.txt", "r+") as f:
+                coins = f.read()
+                f.close()
+            # Get a users name from their id
+            # user = await self.bot.fetch_user(int(filename))
+            await embed.add_field(name = f"{self.bot.fetch_user(int(filename)).name}", value = f"{coins} coins", inline = False)
+        
+        await ctx.send(embed = embed)
+        
+    @commands.command(name = "shop")
+    async def shop(self, ctx):
+        embed = discord.Embed(title = "Shop", description = "Buy stuff with your coins.", color = 0x00ff00)
+        embed.set_thumbnail(url = "https://cdn.discordapp.com/attachments/750458012618426133/750458035738474802/coin.png")
+        
+        embed.add_field(name = "Laptop", value = "1000 coins", inline = False)
+        embed.add_field(name = "PC", value = "5000 coins", inline = False)
+        embed.add_field(name = "Phone", value = "10000 coins", inline = False)
+        
+        await ctx.send(embed = embed)
+        
+        
+    @commands.command(name = "buy")
+    async def buy(self, ctx, item: str):
+        identifier = int(ctx.author.id)
+        
+        if os.path.exists("economy") == False:
+            os.mkdir("economy")
+            pass
+        else:
+            if os.path.exists(f"economy/{identifier}") == False:
+                os.mkdir(f"economy/{identifier}")
+                pass
+            else:
+                if os.path.isfile(f"economy/{identifier}/coins.txt") is False:
+                    with open(f"economy/{identifier}/coins.txt", "w") as x:
+                        x.write("0")
+                else:
+                    pass
+        
+        with open(f"economy/{ctx.author.id}/coins.txt", "r+") as f:
+            coins = f.read()
+            f.close()
+        
+        if item == "laptop":
+            if int(coins) < 1000:
+                await ctx.send("You do not have enough coins.")
+                return
+            else:
+                with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
+                    f.write(str(int(coins) - 1000))
+                
+                with open(f"economy/{ctx.author.id}/laptop.txt", "w") as f:
+                    f.write("true")
+                    
+                await ctx.send("You bought a laptop.")
+                
+        elif item == "pc":
+            if int(coins) < 5000:
+                await ctx.send("You do not have enough coins.")
+                return
+            else:
+                with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
+                    f.write(str(int(coins) - 5000))
+                
+                with open(f"economy/{ctx.author.id}/pc.txt", "w") as f:
+                    f.write("true")
+                    
+                await ctx.send("You bought a pc.")
+                
+        elif item == "phone":
+            if int(coins) < 10000:
+                await ctx.send("You do not have enough coins.")
+                return
+            else:
+                with open(f"economy/{ctx.author.id}/coins.txt", "w") as f:
+                    f.write(str(int(coins) - 10000))
+                
+                with open(f"economy/{ctx.author.id}/phone.txt", "w") as f:
+                    f.write("true")
+                    
+                await ctx.send("You bought a phone.")
+                
+        else:
+            await ctx.send("That item does not exist.")
+            
+    @commands.command(name = "inventory")
+    async def inventory(self, ctx):
+        identifier = int(ctx.author.id)
+        
+        if os.path.exists("economy") == False:
+            os.mkdir("economy")
+            pass
+        else:
+            if os.path.exists(f"economy/{identifier}") == False:
+                os.mkdir(f"economy/{identifier}")
+                pass
+            else:
+                if os.path.isfile(f"economy/{identifier}/coins.txt") is False:
+                    with open(f"economy/{identifier}/coins.txt", "w") as x:
+                        x.write("0")
+                else:
+                    pass
+        
+        with open(f"economy/{ctx.author.id}/laptop.txt", "r+") as f:
+            laptop = f.read()
+            f.close()
+        
+        with open(f"economy/{ctx.author.id}/pc.txt", "r+") as f:
+            pc = f.read()
+            f.close()
+        
+        with open(f"economy/{ctx.author.id}/phone.txt", "r+") as f:
+            phone = f.read()
+            f.close()
+        
+        embed = discord.Embed(title = "Inventory", description = "Your inventory.", color = 0x00ff00)
+        embed.set_thumbnail(url = "https://cdn.discordapp.com/attachments/750458012618426133/750458035738474802/coin.png")
+        
+        if laptop == "true":
+            embed.add_field(name = "Laptop", value = "You own a laptop.", inline = False)
+        if pc == "true":
+            embed.add_field(name = "PC", value = "You own a PC.", inline = False)
+        if phone == "true":
+            embed.add_field(name = "Phone", value = "You own a phone.", inline = False)
+        
+        await ctx.send(embed = embed)
