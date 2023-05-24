@@ -5,7 +5,7 @@ class RoleCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         
-    @commands.command(name="role")
+    @commands.command(name="addrole", aliases = ["ar", "giverole", "gr", "role"])
     @commands.has_permissions(manage_roles=True)
     async def role(self, ctx, role: discord.Role, *, member: discord.Member):
         await member.add_roles(role)
