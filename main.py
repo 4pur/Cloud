@@ -39,6 +39,8 @@ for str in ["commands.moderation.essential.ban",
             "commands.fun.eightball",
             "commands.fun.economy",
             "commands.util.invite",
+            "commands.util.timestamp",
+            "commands.util.list",
             ]:
     
     
@@ -86,6 +88,8 @@ for cog in [
     EconomyCog,
     PingCog,
     InviteCog,
+    TimestampCog,
+    ListCog,
     ]:
     
     Cloud.add_cog(cog(Cloud))

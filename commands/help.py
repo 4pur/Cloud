@@ -80,6 +80,8 @@ class SelectView(discord.ui.Select):
             embed.add_field(name="invite", value="invite the bot to your server")
             embed.add_field(name="ping", value="view the bot's latency")
             embed.add_field(name="whois", value="view a user's information")
+            embed.add_field(name="timestamp", value="view the current timestamp")
+            embed.
             await interaction.response.edit_message(embed=embed)
             
 class View(discord.ui.View):
