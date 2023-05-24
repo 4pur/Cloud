@@ -41,6 +41,7 @@ for str in ["commands.moderation.essential.ban",
             "commands.util.invite",
             "commands.util.timestamp",
             "commands.util.list",
+            "commands.fun.snipe",
             ]:
     
     
@@ -90,6 +91,7 @@ for cog in [
     InviteCog,
     TimestampCog,
     ListCog,
+    SnipeCog,
     ]:
     
     Cloud.add_cog(cog(Cloud))

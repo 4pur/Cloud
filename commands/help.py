@@ -36,6 +36,7 @@ class SelectView(discord.ui.Select):
             embed.add_field(name="rob", value="rob money from someone")
             embed.add_field(name="shop", value="shop for items")
             embed.add_field(name="withdraw", value="withdraw money")
+            embed.add_field(name = "snipe", value = "snipe a deleted message")
             await interaction.response.edit_message(embed=embed)
         elif self.values[0] == "Moderation":
             embed = discord.Embed(title="Moderation Commands")
@@ -81,7 +82,7 @@ class SelectView(discord.ui.Select):
             embed.add_field(name="ping", value="view the bot's latency")
             embed.add_field(name="whois", value="view a user's information")
             embed.add_field(name="timestamp", value="view the current timestamp")
-            embed.
+            embed.add_field(name = "list", value = "list members with a certain name")
             await interaction.response.edit_message(embed=embed)
             
 class View(discord.ui.View):
