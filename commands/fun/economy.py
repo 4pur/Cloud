@@ -39,26 +39,62 @@ class EconomyCog(commands.Cog):
                 elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
                     with open(f"economy/{identifier}/last_daily.txt", "w") as x:
                         x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/bank.txt") is False:
+                    with open(f"economy/{identifier}/bank.txt", "w") as x:
+                        x.write("0")
                 else:
                     pass
                     
         with open(f"economy/{identifier}/coins.txt", "r") as f:
             coins = f.read()
+            
+        with open(f"economy/{identifier}/bank.txt", "r") as f:
+            bank = f.read()
 
         if user is None:
             if int(coins) > 1:
-                await ctx.send(f"You have {coins} coins.")
+                if int(bank) < 1:
+                    await ctx.send(f"You have {coins} coins in your wallet, and no coins in your bank account.")
+                if int(bank) == 1:
+                    await ctx.send(f"You have {coins} coins in your wallet, and {bank} coin in your bank account.")
+                else:
+                    await ctx.send(f"You have {coins} coins in your wallet, and {bank} coins in your bank account.")
             if int(coins) < 1:
-                await ctx.send("You have no coins.")
+                if int(bank) < 1:
+                    await ctx.send(f"You have nothing, at all.")
+                if int(bank) == 1:
+                    await ctx.send(f"You have nothing in your wallet, and {bank} coin in your bank account.")
+                else:
+                    await ctx.send(f"You have nothing in your wallet, and {bank} coins in your bank account.")
             if int(coins) == 1:
-                await ctx.send(f"You have {coins} coin.")
+                if int(bank) < 1:
+                    await ctx.send(f"You have {coins} coin in your wallet, and no coins in your bank account.")
+                if int(bank) == 1:
+                    await ctx.send(f"You have {coins} coin in your wallet, and {bank} coin in your bank account.")
+                else:
+                    await ctx.send(f"You have {coins} coin in your wallet, and {bank} coins in your bank account.")
         else:
             if int(coins) > 1:
-                await ctx.send(f"{user.name} has {coins} coins.")
+                if int(bank) < 1:
+                    await ctx.send(f"{user.name} has {coins} coins their wallet, and no coins in their bank account.")
+                if int(bank) == 1:
+                    await ctx.send(f"{user.name} has {coins} coins in their wallet, and {bank} coin in their bank account.")
+                else:
+                    await ctx.send(f"{user.name} has {coins} coins in their wallet, and {bank} coins in their bank account.")
             if int(coins) < 1:
-                await ctx.send(f"{user.name} has no coins.")
+                if int(bank) < 1:
+                    await ctx.send(f"{user.name} has nothing, at all.")
+                if int(bank) == 1:
+                    await ctx.send(f"{user.name} has no coins in their wallet, and {bank} coin in their bank account.")
+                else:
+                    await ctx.send(f"{user.name} has no coins in their wallet, and {bank} coins in their bank account.")
             if int(coins) == 1:
-                await ctx.send(f"{user.name} has {coins} coin.")
+                if int(bank) < 1:
+                    await ctx.send(f"{user.name} has {coins} coin their wallet, and no coins in their bank account.")
+                if int(bank) == 1:
+                    await ctx.send(f"{user.name} has {coins} coin in their wallet, and {bank} coin in their bank account.")
+                else:
+                    await ctx.send(f"{user.name} have {coins} coin in their wallet, and {bank} coins in their bank account.")
         
         
     @commands.command(name = "beg")
@@ -87,6 +123,9 @@ class EconomyCog(commands.Cog):
                         x.write("0")
                 elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
                     with open(f"economy/{identifier}/last_daily.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/bank.txt") is False:
+                    with open(f"economy/{identifier}/bank.txt", "w") as x:
                         x.write("0")
                 else:
                     pass
@@ -163,6 +202,9 @@ class EconomyCog(commands.Cog):
                 elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
                     with open(f"economy/{identifier}/last_daily.txt", "w") as x:
                         x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/bank.txt") is False:
+                    with open(f"economy/{identifier}/bank.txt", "w") as x:
+                        x.write("0")
                 else:
                     pass
         
@@ -213,6 +255,9 @@ class EconomyCog(commands.Cog):
                 elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
                     with open(f"economy/{identifier}/last_daily.txt", "w") as x:
                         x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/bank.txt") is False:
+                    with open(f"economy/{identifier}/bank.txt", "w") as x:
+                        x.write("0")
                 else:
                     pass
         
@@ -261,6 +306,9 @@ class EconomyCog(commands.Cog):
                         x.write("0")
                 elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
                     with open(f"economy/{identifier}/last_daily.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/bank.txt") is False:
+                    with open(f"economy/{identifier}/bank.txt", "w") as x:
                         x.write("0")
                 else:
                     pass
@@ -331,6 +379,9 @@ class EconomyCog(commands.Cog):
                 elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
                     with open(f"economy/{identifier}/last_daily.txt", "w") as x:
                         x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/bank.txt") is False:
+                    with open(f"economy/{identifier}/bank.txt", "w") as x:
+                        x.write("0")
                 else:
                     pass
         
@@ -397,6 +448,9 @@ class EconomyCog(commands.Cog):
                 elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
                     with open(f"economy/{identifier}/last_daily.txt", "w") as x:
                         x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/bank.txt") is False:
+                    with open(f"economy/{identifier}/bank.txt", "w") as x:
+                        x.write("0")
                 else:
                     pass
         
@@ -447,6 +501,9 @@ class EconomyCog(commands.Cog):
                         x.write("0")
                 elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
                     with open(f"economy/{identifier}/last_daily.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/bank.txt") is False:
+                    with open(f"economy/{identifier}/bank.txt", "w") as x:
                         x.write("0")
                 else:
                     pass
@@ -528,6 +585,9 @@ class EconomyCog(commands.Cog):
                 elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
                     with open(f"economy/{identifier}/last_daily.txt", "w") as x:
                         x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/bank.txt") is False:
+                    with open(f"economy/{identifier}/bank.txt", "w") as x:
+                        x.write("0")
                 else:
                     pass
         
@@ -603,6 +663,9 @@ class EconomyCog(commands.Cog):
                         x.write("0")
                 elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
                     with open(f"economy/{identifier}/last_daily.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/bank.txt") is False:
+                    with open(f"economy/{identifier}/bank.txt", "w") as x:
                         x.write("0")
                 else:
                     pass
