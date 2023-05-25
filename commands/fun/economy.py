@@ -27,6 +27,18 @@ class EconomyCog(commands.Cog):
                 if os.path.isfile(f"economy/{identifier}/coins.txt") is False:
                     with open(f"economy/{identifier}/coins.txt", "w") as x:
                         x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_beg.txt") is False:
+                    with open(f"economy/{identifier}/last_beg.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_work.txt") is False:
+                    with open(f"economy/{identifier}/last_work.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_rob.txt") is False:
+                    with open(f"economy/{identifier}/last_rob.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
+                    with open(f"economy/{identifier}/last_daily.txt", "w") as x:
+                        x.write("0")
                 else:
                     pass
                     
@@ -61,11 +73,20 @@ class EconomyCog(commands.Cog):
                 os.mkdir(f"economy/{identifier}")
                 pass
             else:
-                if os.path.isfile(f"economy/{identifier}/last_beg.txt") is False:
+                if os.path.isfile(f"economy/{identifier}/coins.txt") is False:
+                    with open(f"economy/{identifier}/coins.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_beg.txt") is False:
                     with open(f"economy/{identifier}/last_beg.txt", "w") as x:
                         x.write("0")
-                elif os.path.isfile(f"economy/{identifier}/coins.txt") is False:
-                    with open(f"economy/{identifier}/coins.txt", "w") as x:
+                elif os.path.isfile(f"economy/{identifier}/last_work.txt") is False:
+                    with open(f"economy/{identifier}/last_work.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_rob.txt") is False:
+                    with open(f"economy/{identifier}/last_rob.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
+                    with open(f"economy/{identifier}/last_daily.txt", "w") as x:
                         x.write("0")
                 else:
                     pass
@@ -130,6 +151,18 @@ class EconomyCog(commands.Cog):
                 if os.path.isfile(f"economy/{identifier}/coins.txt") is False:
                     with open(f"economy/{identifier}/coins.txt", "w") as x:
                         x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_beg.txt") is False:
+                    with open(f"economy/{identifier}/last_beg.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_work.txt") is False:
+                    with open(f"economy/{identifier}/last_work.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_rob.txt") is False:
+                    with open(f"economy/{identifier}/last_rob.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
+                    with open(f"economy/{identifier}/last_daily.txt", "w") as x:
+                        x.write("0")
                 else:
                     pass
         
@@ -168,6 +201,18 @@ class EconomyCog(commands.Cog):
                 if os.path.isfile(f"economy/{identifier}/coins.txt") is False:
                     with open(f"economy/{identifier}/coins.txt", "w") as x:
                         x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_beg.txt") is False:
+                    with open(f"economy/{identifier}/last_beg.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_work.txt") is False:
+                    with open(f"economy/{identifier}/last_work.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_rob.txt") is False:
+                    with open(f"economy/{identifier}/last_rob.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
+                    with open(f"economy/{identifier}/last_daily.txt", "w") as x:
+                        x.write("0")
                 else:
                     pass
         
@@ -202,11 +247,20 @@ class EconomyCog(commands.Cog):
                 os.mkdir(f"economy/{identifier}")
                 pass
             else:
-                if os.path.isfile(f"economy/{identifier}/last_work.txt") is False:
+                if os.path.isfile(f"economy/{identifier}/coins.txt") is False:
+                    with open(f"economy/{identifier}/coins.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_beg.txt") is False:
+                    with open(f"economy/{identifier}/last_beg.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_work.txt") is False:
                     with open(f"economy/{identifier}/last_work.txt", "w") as x:
                         x.write("0")
-                elif os.path.isfile(f"economy/{identifier}/coins.txt") is False:
-                    with open(f"economy/{identifier}/coins.txt", "w") as x:
+                elif os.path.isfile(f"economy/{identifier}/last_rob.txt") is False:
+                    with open(f"economy/{identifier}/last_rob.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
+                    with open(f"economy/{identifier}/last_daily.txt", "w") as x:
                         x.write("0")
                 else:
                     pass
@@ -265,8 +319,17 @@ class EconomyCog(commands.Cog):
                 if os.path.isfile(f"economy/{identifier}/coins.txt") is False:
                     with open(f"economy/{identifier}/coins.txt", "w") as x:
                         x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_beg.txt") is False:
+                    with open(f"economy/{identifier}/last_beg.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_work.txt") is False:
+                    with open(f"economy/{identifier}/last_work.txt", "w") as x:
+                        x.write("0")
                 elif os.path.isfile(f"economy/{identifier}/last_rob.txt") is False:
                     with open(f"economy/{identifier}/last_rob.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
+                    with open(f"economy/{identifier}/last_daily.txt", "w") as x:
                         x.write("0")
                 else:
                     pass
@@ -322,6 +385,18 @@ class EconomyCog(commands.Cog):
                 if os.path.isfile(f"economy/{identifier}/coins.txt") is False:
                     with open(f"economy/{identifier}/coins.txt", "w") as x:
                         x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_beg.txt") is False:
+                    with open(f"economy/{identifier}/last_beg.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_work.txt") is False:
+                    with open(f"economy/{identifier}/last_work.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_rob.txt") is False:
+                    with open(f"economy/{identifier}/last_rob.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
+                    with open(f"economy/{identifier}/last_daily.txt", "w") as x:
+                        x.write("0")
                 else:
                     pass
         
@@ -360,6 +435,15 @@ class EconomyCog(commands.Cog):
             else:
                 if os.path.isfile(f"economy/{identifier}/coins.txt") is False:
                     with open(f"economy/{identifier}/coins.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_beg.txt") is False:
+                    with open(f"economy/{identifier}/last_beg.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_work.txt") is False:
+                    with open(f"economy/{identifier}/last_work.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_rob.txt") is False:
+                    with open(f"economy/{identifier}/last_rob.txt", "w") as x:
                         x.write("0")
                 elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
                     with open(f"economy/{identifier}/last_daily.txt", "w") as x:
@@ -432,6 +516,18 @@ class EconomyCog(commands.Cog):
                 if os.path.isfile(f"economy/{identifier}/coins.txt") is False:
                     with open(f"economy/{identifier}/coins.txt", "w") as x:
                         x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_beg.txt") is False:
+                    with open(f"economy/{identifier}/last_beg.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_work.txt") is False:
+                    with open(f"economy/{identifier}/last_work.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_rob.txt") is False:
+                    with open(f"economy/{identifier}/last_rob.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
+                    with open(f"economy/{identifier}/last_daily.txt", "w") as x:
+                        x.write("0")
                 else:
                     pass
         
@@ -495,6 +591,18 @@ class EconomyCog(commands.Cog):
             else:
                 if os.path.isfile(f"economy/{identifier}/coins.txt") is False:
                     with open(f"economy/{identifier}/coins.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_beg.txt") is False:
+                    with open(f"economy/{identifier}/last_beg.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_work.txt") is False:
+                    with open(f"economy/{identifier}/last_work.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_rob.txt") is False:
+                    with open(f"economy/{identifier}/last_rob.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{identifier}/last_daily.txt") is False:
+                    with open(f"economy/{identifier}/last_daily.txt", "w") as x:
                         x.write("0")
                 else:
                     pass
