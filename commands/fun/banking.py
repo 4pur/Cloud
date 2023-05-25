@@ -23,6 +23,21 @@ class BankingCog(commands.Cog):
                 elif os.path.isfile(f"economy/{ctx.author.id}/bank.txt") is False:
                     with open(f"economy/{ctx.author.id}/bank.txt", "w") as x:
                         x.write("0")
+                elif os.path.isfile(f"economy/{ctx.author.id}/last_beg.txt") is False:
+                    with open(f"economy/{ctx.author.id}/last_beg.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{ctx.author.id}/last_work.txt") is False:
+                    with open(f"economy/{ctx.author.id}/last_work.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{ctx.author.id}/last_rob.txt") is False:
+                    with open(f"economy/{ctx.author.id}/last_rob.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{ctx.author.id}/last_daily.txt") is False:
+                    with open(f"economy/{ctx.author.id}/last_daily.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{ctx.author.id}/bank.txt") is False:
+                    with open(f"economy/{ctx.author.id}/bank.txt", "w") as x:
+                        x.write("0")
                 else:
                     pass
         
@@ -132,6 +147,21 @@ class BankingCog(commands.Cog):
             else:
                 if os.path.isfile(f"economy/{ctx.author.id}/coins.txt") is False:
                     with open(f"economy/{ctx.author.id}/coins.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{ctx.author.id}/bank.txt") is False:
+                    with open(f"economy/{ctx.author.id}/bank.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{ctx.author.id}/last_beg.txt") is False:
+                    with open(f"economy/{ctx.author.id}/last_beg.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{ctx.author.id}/last_work.txt") is False:
+                    with open(f"economy/{ctx.author.id}/last_work.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{ctx.author.id}/last_rob.txt") is False:
+                    with open(f"economy/{ctx.author.id}/last_rob.txt", "w") as x:
+                        x.write("0")
+                elif os.path.isfile(f"economy/{ctx.author.id}/last_daily.txt") is False:
+                    with open(f"economy/{ctx.author.id}/last_daily.txt", "w") as x:
                         x.write("0")
                 elif os.path.isfile(f"economy/{ctx.author.id}/bank.txt") is False:
                     with open(f"economy/{ctx.author.id}/bank.txt", "w") as x:
