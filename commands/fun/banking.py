@@ -1,7 +1,7 @@
 import os
 import random
 
-from discord.ext import commands
+from   discord.ext import commands
 
 class BankingCog(commands.Cog):
     def __init__(self, bot):
