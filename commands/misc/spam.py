@@ -1,5 +1,5 @@
 from discord.ext import commands
-from time import sleep
+from time        import sleep
 
 class SpamCog(commands.Cog):
     def __init__(self, bot):
