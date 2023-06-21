@@ -1,7 +1,6 @@
 import discord
-
-from discord.ext import commands
-from discord.ui.input_text import InputText
+from   discord.ext           import commands
+from   discord.ui.input_text import InputText
 
 class TicketCog(commands.Cog):
     def __init__(self, bot):
