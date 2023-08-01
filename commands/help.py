@@ -19,6 +19,7 @@ class SelectView(discord.ui.Select):
             discord.SelectOption(label="Moderation", description="Essential Moderation commands"),
             discord.SelectOption(label="Music", description="Music commands"),
             discord.SelectOption(label="Utility", description="Utility commands"),
+            discord.SelectOption(label="Fun", description="Fun commands"),
         ]
         super().__init__(placeholder = "Select an option", max_values = 1, min_values = 1, options = options)
         
@@ -82,8 +83,16 @@ class SelectView(discord.ui.Select):
             embed.add_field(name="ping", value="view the bot's latency")
             embed.add_field(name="whois", value="view a user's information")
             embed.add_field(name="timestamp", value="view the current timestamp")
-            embed.add_field(name = "list", value = "list members with a certain name")
+            embed.add_field(name="list", value="list members with a certain name")
+            embed.add_field(name="afk", value="set your afk status")
             await interaction.response.edit_message(embed=embed)
+        elif self.values[0] == "Fun":
+            embed = discord.Embed(title="Fun Commands")
+            embed.add_field(name="8ball ask", value="ask the magic 8ball a question, get a response!")
+            embed.add_field(name="8ball yes_or_no", value="ask the magic 8ball a yes or no question, get a response!")
+
+            await interaction.response.edit_message(embed=embed)
+            
             
 class View(discord.ui.View):
     def __init__(self):

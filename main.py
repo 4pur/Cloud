@@ -37,6 +37,7 @@ for str in [
             "commands.util.list",
             "commands.util.embed",
             "commands.util.ping",
+            "commands.util.afk",
             
             # Help
             "commands.help",
@@ -119,6 +120,7 @@ for cog in [
     TimestampCog,
     ListCog,
     SnipeCog,
+    AfkCog,
     ]:
     
     Cloud.add_cog(cog(Cloud))
