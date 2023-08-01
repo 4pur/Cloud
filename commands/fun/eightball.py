@@ -30,8 +30,11 @@ class EightballCog(commands.Cog):
                         "Outlook not so good.",
                         "Very doubtful."]
             
-        if a == "yes_or_no":
+        elif a == "yes_or_no":
             responses = ["Yes.",
                          "No."]
+            
+        else:
+            ctx.send("Invalid argument. Valid arguments are `ask` and `yes_or_no`.")
         
         await ctx.send(f"{random.choice(responses)}")
