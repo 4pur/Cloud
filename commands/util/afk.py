@@ -1,3 +1,4 @@
+# to fix
 from discord.ext import commands
 
 class AfkCog(commands.Cog):
@@ -15,7 +16,7 @@ class AfkCog(commands.Cog):
             return
         
         if message.author.nick and message.author.nick.startswith("[AFK]"):
-            await message.author.edit(nick=message.author.nick.replace("[AFK] ", ""))
+            await message.author.edit(nick=message.author.nick.replace("[AFK] ", f"{user.display_name}"))
             await message.channel.send(f"Welcome back {message.author.mention}, I removed your AFK status.")
             
     @commands.Cog.listener()
