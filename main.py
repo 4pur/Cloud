@@ -1,25 +1,50 @@
 ## TODO ## 
 # - Add a command to change the prefix
 
+from os import system
 
-import discord
+try:
+    import discord
+except ImportError as e:
+    print("pycord was not found, installing...")
+    system("pip install py-cord")
+    
+    import discord
+
+try:
+    from dotenv import load_dotenv
+except ImportError as e:
+    print("dotenv was not found, installing...")
+    system("pip install python-dotenv")
+
 import logging
 
 from discord.ext import commands
-from dotenv      import load_dotenv
 from os          import getenv
 
 i = 0
 
-for str in ["commands.moderation.essential.ban", 
-            "commands.moderation.essential.unban",
-            "commands.moderation.essential.kick",
+for str in [
+            # Misc
             "commands.misc.spam",
+            
+            # Utility
             "commands.util.avatar", 
             "commands.util.clear",
             "commands.util.whois",
-            "commands.ai.ask",
+            "commands.util.invite",
+            "commands.util.timestamp",
+            "commands.util.list",
+            "commands.util.embed",
+            "commands.util.ping",
+            
+            # Help
             "commands.help",
+            
+            # Moderation
+            "commands.moderation.essential.ban", 
+            "commands.moderation.essential.unban",
+            "commands.moderation.essential.kick",
             "commands.moderation.warnings.warn",
             "commands.moderation.warnings.warns",
             "commands.moderation.warnings.cw",
@@ -32,16 +57,18 @@ for str in ["commands.moderation.essential.ban",
             "commands.moderation.auto.autorole",
             "commands.moderation.role",
             "commands.moderation.nuke",
-            "commands.util.embed",
-            "commands.util.ping",
-            "commands.music.join",
-            "commands.music.play",
+
+            # Music
+            #"commands.music.join",
+            #"commands.music.play",
+            
+            # Fun
             "commands.fun.eightball",
             "commands.fun.economy",
-            "commands.util.invite",
-            "commands.util.timestamp",
-            "commands.util.list",
             "commands.fun.snipe",
+
+            # AI
+            #"commands.ai.ask",
             ]:
     
     
@@ -68,7 +95,7 @@ for cog in [
     AvatarCog,
     ClearCog,
     WhoisCog,
-    AskCog,
+    #AskCog,
     HelpCog,
     WarnCog,
     WarnsCog,
@@ -83,8 +110,8 @@ for cog in [
     RoleCog,
     NukeCog,
     EmbedCog,
-    JoinCog,
-    PlayCog,
+    #JoinCog,
+    #PlayCog,
     EightballCog,
     EconomyCog,
     PingCog,

@@ -1,5 +1,14 @@
+from os import system
+
+try:
+    import openai
+except ImportError as e:
+    print("openai was not found, installing...")
+    system("pip install openai")
+    
+    import openai
+
 import discord
-import openai
 import os
 
 from   discord.ext import commands

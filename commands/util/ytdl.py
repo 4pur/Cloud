@@ -1,8 +1,19 @@
+from os import system
+
+try:
+    import yt_dlp as youtube_dl
+except ImportError as e:
+    print("yt_dlp was not found, installing...")
+    system("pip install yt_dlp")
+    
+    import yt_dlp as youtube_dl
+
 import discord
-from discord.ext import commands,tasks
 import os
+
+from discord.ext import commands,tasks
 from dotenv import load_dotenv
-import yt_dlp as youtube_dl
+
 
 youtube_dl.utils.bug_reports_message = lambda: ''
 

@@ -1,12 +1,26 @@
+from os import system
+
+try:
+    import yt_dlp as youtube_dl
+except ImportError as e:
+    print("yt_dlp was not found, installing...")
+    system("pip install yt_dlp")
+    
+    import yt_dlp as youtube_dl
+
 import discord
 import os
-import yt_dlp as youtube_dl
 
 from dotenv import load_dotenv
 from discord.ext import commands,tasks
 from commands.util.ytdl import YTDLSource
 
-discord.opus.load_opus('util/libopus.so.0.9.0')
+if os.name == 'nt':
+    libopusA = 'util/nt/ffmpeg.exe'
+    discord.opus.load_opus(libopusA)
+else:
+    libopusA = 'util/libopus.so.0.9.0'
+    discord.opus.load_opus(libopusA)
     
 class PlayCog(commands.Cog):
     def __init__(self, bot):
@@ -31,7 +45,7 @@ class PlayCog(commands.Cog):
             #raise RuntimeError('Failed to load Opus!')
         async with ctx.typing():
             filename = await YTDLSource.from_url(url, loop=self.bot.loop)
-            voice_channel.play(discord.FFmpegPCMAudio(executable="util/ffmpeg", source=filename))
+            voice_channel.play(discord.FFmpegPCMAudio(executable=libopusA, source=filename))
         await ctx.send('**Now playing:** {}'.format(filename))
 
     @commands.command(name = 'volume')
