@@ -1,3 +1,9 @@
+"""
+Closes a ticket, must be a ticket channel
+
+Usage: $close
+"""
+
 import discord
 from discord.ext import commands
 
