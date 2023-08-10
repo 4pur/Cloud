@@ -1,3 +1,10 @@
+"""
+Deletes a specified amount of 
+messages in a channel
+
+Usage: $purge x
+"""
+
 import discord
 
 from discord.ext import commands
