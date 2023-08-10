@@ -1,7 +1,7 @@
 """
 Kicks a member from the server
 
-$kick @member or memberid
+Usage: $kick @member
 """
 
 import discord
