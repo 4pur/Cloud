@@ -1,3 +1,10 @@
+"""
+Adds a member to an open ticket
+(must be a ticket channel)
+
+Usage: $add @member
+"""
+
 import discord
 from   discord.ext import commands
 
