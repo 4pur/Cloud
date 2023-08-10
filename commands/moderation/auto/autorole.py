@@ -1,3 +1,10 @@
+"""
+Gives members a role
+upon joining the server
+
+Usage: $autorole @role OR roleid
+"""
+
 import discord
 from discord.ext import commands
 
