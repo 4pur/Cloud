@@ -1,3 +1,10 @@
+"""
+Creates an embed that says whatever you want,
+with a button for users to create a ticket with
+
+Usage: $ticket
+"""
+
 import discord
 from   discord.ext           import commands
 from   discord.ui.input_text import InputText
