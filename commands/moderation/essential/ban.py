@@ -1,7 +1,7 @@
 """
 Bans a member from the server
 
-Usage: $ban @member or member id
+Usage: $ban @member
 """
 
 import discord
