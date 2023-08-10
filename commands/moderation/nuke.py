@@ -2,6 +2,8 @@
 Clears all messages in a channel by:
 - Cloning the channel
 - Deleting the original channel
+
+Usage: $nuke
 """
 
 from discord.ext import commands
