@@ -1,5 +1,7 @@
 # Cloud
 
+*may rewrite soon, watch for updates!*
+
 A discord bot, with lots of customizable features!
 
 ## Requirements
