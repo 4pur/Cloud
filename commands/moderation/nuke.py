@@ -1,3 +1,9 @@
+"""
+Clears all messages in a channel by:
+- Cloning the channel
+- Deleting the original channel
+"""
+
 from discord.ext import commands
 
 class NukeCog(commands.Cog):
