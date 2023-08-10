@@ -1,3 +1,9 @@
+"""
+Removes a user from a ticket
+
+Usage: $remove @user
+"""
+
 import discord
 from discord.ext import commands
 
