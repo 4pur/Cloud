@@ -5,6 +5,8 @@ Usage: $close
 """
 
 import discord
+import time
+
 from discord.ext import commands
 
 class CloseCog(commands.Cog):
@@ -19,4 +21,5 @@ class CloseCog(commands.Cog):
         else:
             e = discord.Embed(title="Ticket Closed", description="The ticket has been closed by a moderator.", color=0xff0000)
             await ctx.channel.send(embed=e)
+            time.sleep(3)
             await ctx.channel.delete()
