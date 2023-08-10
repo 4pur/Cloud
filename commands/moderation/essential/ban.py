@@ -1,5 +1,5 @@
 """
-Bans a member
+Bans a member.
 
 Usage: $ban @member or member id
 """
