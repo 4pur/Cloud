@@ -1,3 +1,9 @@
+"""
+Bans a member
+
+Usage: $ban @member or member id
+"""
+
 import discord
 from discord.ext import commands
 
