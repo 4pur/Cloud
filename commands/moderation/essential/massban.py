@@ -1,3 +1,9 @@
+"""
+Bans multiple members from the server at once
+
+Usage: $ban @members
+"""
+
 import discord
 from discord.ext import commands
 
