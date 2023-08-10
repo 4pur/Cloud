@@ -1,3 +1,9 @@
+"""
+Kicks a member from the server
+
+$kick @member or memberid
+"""
+
 import discord
 from discord.ext import commands
 
