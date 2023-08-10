@@ -2,6 +2,7 @@
 Unbans a user from the server
 
 Usage: $unban memberid OR @member
+"""
 
 import discord
 from discord.ext import commands
