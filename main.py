@@ -127,15 +127,6 @@ for cog in [
     
     Cloud.add_cog(cog(Cloud))
 
-
-# I had 20gb of logs in codespaces, resolving this now...
-
-# logger = logging.getLogger('discord')
-# logger.setLevel(logging.DEBUG)
-# handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
-# handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
-# logger.addHandler(handler)
-
 load_dotenv()
 
 TOKEN = getenv("TOKEN")
