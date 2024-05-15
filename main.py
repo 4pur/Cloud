@@ -82,9 +82,11 @@ intent = discord.Intents.default()
 intent.members = True
 intent.message_content = True
 
-activity = discord.Activity(type=discord.ActivityType.watching, name="nothing.")
+prefix = '$'
 
-Cloud = commands.Bot(command_prefix='$', intents=intent, activity=activity)
+activity = discord.Activity(type=discord.ActivityType.watching, name=f"for {prefix}")
+
+Cloud = commands.Bot(command_prefix=prefix, intents=intent, activity=activity)
 
 Cloud.remove_command('help')
 
